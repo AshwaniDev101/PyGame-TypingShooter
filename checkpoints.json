@@ -1,0 +1,15 @@
+[
+    {
+        "id": "1",
+        "states": {
+            "player_position": {
+                "x": 671,
+                "y": 847
+            },
+            "player_health": 3,
+            "player_ammo": 100,
+            "player_score": 0
+        },
+        "timestamp": 9051
+    }
+]
