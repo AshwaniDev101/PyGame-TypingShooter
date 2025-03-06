@@ -130,9 +130,9 @@ class ClickableShape:
 
 # Class managing the level selection UI and control buttons
 class LevelLoadingScreen:
-    def __init__(self, screen):
+    def __init__(self, screen, star_background):
         self.screen = screen
-        self.background = StarBackground()
+        self.background = star_background
         self.clickable_shapes = []
         self.setup_shapes()
         # Set up ESC button position and compute its rectangle once

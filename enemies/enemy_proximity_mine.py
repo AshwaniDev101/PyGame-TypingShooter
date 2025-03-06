@@ -79,7 +79,7 @@ class EnemyProximityMines(Enemy):
 
         # Update the pulsating effect.
         self._update_pulse()
-        # Apply pushback effects (inherited or custom logic).
+        # Apply pushback space_elements (inherited or custom logic).
         self.move_handle_pushback()
 
     def _update_pulse(self):

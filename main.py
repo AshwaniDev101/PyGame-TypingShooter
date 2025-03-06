@@ -2,11 +2,16 @@ import pygame
 import sys
 
 from config import constants
+
 from game import Game
 from menu_screens.layout_menu_screen import LayoutMenu
 from menu_screens.level_loading_screen import LevelLoadingScreen
 from menu_screens.setting_menu_screen import SettingsMenu
 from menu_screens.start_menu_screen import StartScreen
+
+from effects.stars import StarBackground
+
+
 
 def get_monitor_height_width():
     # Ensure Pygame is initialized
@@ -27,7 +32,7 @@ def get_monitor_height_width():
     return monitor_width, monitor_height
 
 
-def main():
+def main(star_background=None):
     pygame.init()
 
     # setting dynamic height and width
@@ -35,6 +40,11 @@ def main():
     screen = pygame.display.set_mode(
         (constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT)
     )
+
+    # Create the star_background only once.
+    if star_background is None:
+        star_background = StarBackground()
+
     clock = pygame.time.Clock()
 
     # =========  Debugging ====================================================
@@ -45,7 +55,7 @@ def main():
         # intro.run()
 
         # Directly run the game:
-        game = Game(screen)
+        game = Game(screen,star_background)
         result = game.run()
 
         # Optionally, to test the "Load Game" screen instead:
@@ -75,7 +85,7 @@ def main():
         # ===============================================================
 
     # Create and show the start screen until an option is chosen
-    start_screen = StartScreen(screen)
+    start_screen = StartScreen(screen,star_background)
     chosen_option = None
 
     while not chosen_option:
@@ -102,7 +112,7 @@ def main():
     #         main()
 
     elif chosen_option == "Load Game":
-        load_game_screen = LevelLoadingScreen(screen)  # LevelSelectionScreen(screen)
+        load_game_screen = LevelLoadingScreen(screen,star_background)  # LevelSelectionScreen(screen)
         running_load = True
 
         while running_load:
@@ -126,19 +136,19 @@ def main():
                 level_selected = result["Level-Selected"]
 
                 running_load = False  # Exit selection loop
-                game = Game(level_selected=level_selected)
+                game = Game(level_selected=level_selected, star_background=star_background)
 
                 game_result = game.run()
 
                 if game_result == "main_menu":
                     # If "Main Menu" was selected during gameplay, return to the start screen.
-                    main()
+                    main(star_background)
 
 
             load_game_screen.draw()
             clock.tick(60)
         # After closing the load screen, return to the start screen
-        main()
+        main(star_background)
 
     elif chosen_option == "Settings":
 
@@ -159,7 +169,7 @@ def main():
             settings_menu.draw()
             clock.tick(60)
         # After closing the load screen, return to the start screen
-        main()
+        main(star_background)
 
 
 
@@ -182,7 +192,7 @@ def main():
             layout_menu.draw()
             clock.tick(60)
         # After closing the load screen, return to the start screen
-        main()
+        main(star_background)
 
 
 if __name__ == "__main__":

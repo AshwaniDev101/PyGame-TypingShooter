@@ -23,7 +23,7 @@ from campaign import jcon
 
 # ----------------- Game Class (Main Game Logic) -----------------
 class Game:
-    def __init__(self, level_selected, screen=None):
+    def __init__(self, level_selected, star_background, screen=None):
         pygame.init()
 
         if screen is None:
@@ -39,7 +39,7 @@ class Game:
 
         self.player = Player()  # Create the player object
         self.bullets_manager = BulletManager(self.player)  # Bullet manager
-        self.stars = StarBackground()  # Star background effect for gameplay
+        self.stars = star_background  # Star background effect for gameplay
         self.enemy_list: list[Enemy] = []  # List to store enemy objects
 
 
@@ -238,13 +238,15 @@ class Game:
                 self.selected_enemy.selected = False
             self.selected_enemy = None
         elif event.key == pygame.K_HOME:
-            self.stars.set_speed(1)
+            self.stars.set_top_speed(1)
         elif event.key == pygame.K_END:
-            self.stars.set_speed(2)
+            self.stars.set_top_speed(2)
         elif event.key == pygame.K_PAGEUP:
-            self.stars.set_speed(20)
+
+            self.stars.set_top_speed(10)
         elif event.key == pygame.K_PAGEDOWN:
-            self.stars.set_speed(5)
+            self.stars.set_top_speed(5)
+
         else:
             # Handle letter input for shooting enemies
             #
