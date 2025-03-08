@@ -5,6 +5,7 @@ from config import utils, constants
 import math
 
 from config.loader import Loader
+from menu_screens.gui_button import HintButton
 
 
 class GameWindow:
@@ -223,55 +224,34 @@ class GameWindow:
         self.screen.blit(health_text, (x_offset + 30, y_offset + ui_spacing + 35))
 
     def display_buttons(self):
-        # Draw control buttons on the screen
-        text_padding_x = 15  # Horizontal padding inside button
-        text_padding_y = 8  # Vertical padding inside button
-        button_alpha = 150  # Transparency level for button background
-        button_height = 30  # Height of the buttons
-        border_radius = 5  # Corner radius for button borders
-        control_font = pygame.font.Font(pygame.font.match_font("arial"), 15)  # Font for button text
+        # Define button properties
+        button_height = 30
+        control_font = pygame.font.Font(pygame.font.match_font("arial"), 15)
 
-        def draw_button(text, pos):
-            # Draws a single button with text at the specified position
-            text_surface = control_font.render(text, True, (255, 255, 255))
-            text_width, text_height = text_surface.get_size()
-            button_width = text_width + text_padding_x * 2  # Dynamic button width based on text size
+        # Create button instances
+        esc_button = HintButton("ESC", (10, 10), control_font)
+        left_arrow_button = HintButton("Left-Arrow /", (10, constants.SCREEN_HEIGHT - button_height - 45), control_font)
+        l_shift_button = HintButton("L-Shift", (10, constants.SCREEN_HEIGHT - button_height - 10), control_font)
+        tab_button = HintButton("Tab", (120, constants.SCREEN_HEIGHT - button_height - 10), control_font)
 
-            rect = pygame.Rect(pos[0], pos[1], button_width, button_height)
-            button_surface = pygame.Surface((button_width, button_height), pygame.SRCALPHA)
+        right_arrow_width = control_font.size("Right-Arrow")[0] + 30  # Dynamic width calculation
+        right_arrow_button = HintButton("Right-Arrow /", (
+        constants.SCREEN_WIDTH - right_arrow_width - 10, constants.SCREEN_HEIGHT - button_height - 45), control_font)
+        r_shift_button = HintButton("R-Shift", (
+        constants.SCREEN_WIDTH - right_arrow_width - 10, constants.SCREEN_HEIGHT - button_height - 10), control_font)
 
-            # Draw semi-transparent button background and border
-            pygame.draw.rect(button_surface, (50, 50, 50, button_alpha), button_surface.get_rect(),
-                             border_radius=border_radius)
-            pygame.draw.rect(button_surface, (200, 200, 200, button_alpha), button_surface.get_rect(), 2,
-                             border_radius=border_radius)
+        # Draw buttons
+        esc_button.draw(self.screen)
+        left_arrow_button.draw(self.screen)
+        l_shift_button.draw(self.screen)
+        tab_button.draw(self.screen)
+        right_arrow_button.draw(self.screen)
+        r_shift_button.draw(self.screen)
 
-            self.screen.blit(button_surface, rect.topleft)
-            text_rect = text_surface.get_rect(center=rect.center)
-            self.screen.blit(text_surface, text_rect)
-
-            return rect  # Return the button rect for further alignment if needed
-
-
-
-        # Draw ESC button at top-left
-        draw_button("ESC", (10, 10))
-
-        # Draw Left Arrow button at bottom-left
-        draw_button("Left-Arrow /", (10, constants.SCREEN_HEIGHT - button_height - 45))
-        draw_button("L-Shift", (10, constants.SCREEN_HEIGHT - button_height - 10))
-
-        # Draw Space button next to Left Arrow with a gap
-        space_rect = draw_button("Tab", (100+ 20, constants.SCREEN_HEIGHT - button_height - 10))
-
-        # Draw "Switch Target" text next to the Space button
-        switch_text = control_font.render("Switch Target.           press A to Z Keys to Type and shoot", True, (255, 255, 255))
-        self.screen.blit(switch_text, (space_rect.right + 5, space_rect.centery - switch_text.get_height() // 2))
-
-        # Draw Right Arrow button at bottom-right
-        right_arrow_width = control_font.size("Right Arrow")[0] + text_padding_x * 2
-        draw_button("Right-Arrow /",(constants.SCREEN_WIDTH - right_arrow_width - 10, constants.SCREEN_HEIGHT - button_height - 45))
-        draw_button("R-Shift",(constants.SCREEN_WIDTH - right_arrow_width - 10, constants.SCREEN_HEIGHT - button_height - 10))
+        # Draw "Switch Target" text
+        switch_text = control_font.render("Switch Target. Press A to Z Keys to Type and Shoot", True, (255, 255, 255))
+        self.screen.blit(switch_text,
+                         (tab_button.rect.right + 5, tab_button.rect.centery - switch_text.get_height() // 2))
 
 
 

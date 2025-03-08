@@ -1,129 +1,44 @@
 {
   "events": [
-
-        {
-      "delay": 10,
+    {
+      "delay": 1000,
       "action": {
         "checkpoint": {
           "id": "1"
         }
       }
     },
-
-    {
-      "delay": 10,
-      "action": {
-        "trigger": {
-          "meteor_shower": true
-        }
-      }
-    },
-
-    {
-      "delay": 5000,
-      "action": {
-        "spawn": {
-          "enemy_type": "enemy_suicide_drone"
-        }
-      }
-    },
-        {
-      "delay": 3000,
-      "action": {
-        "spawn": {
-          "enemy_type": "enemy_suicide_drone"
-        }
-      }
-    },
-
-            {
-      "delay": 3000,
-      "action": {
-        "spawn": {
-          "enemy_type": "enemy_gunship"
-        }
-      }
-    },
-
-
-    {
-      "delay": 1000000,
-      "action": {
-        "message": {
-          "sender": "alien",
-          "text_message": "Alien: Mr. Bunny..."
-        }
-      }
-    },
-    {
-      "delay": 2000,
-      "action": {
-        "message": {
-          "sender": "alien",
-          "text_message": "Alien: he he how are you"
-        }
-      }
-    },
     {
       "delay": 3000,
       "action": {
         "message": {
           "sender": "alien",
-          "text_message": "Alien: Stop! You can't come here!"
-        }
-      }
-    },
-    {
-      "delay": 2000,
-      "action": {
-        "message": {
-          "sender": "player",
-          "text_message": "Pilot: Oh, but I already did."
-        }
-      }
-    },
-    {
-      "delay": 5000,
-      "action": {
-        "message": {
-          "sender": "alien",
-          "text_message": "Alien: Turn back, human!"
-        }
-      }
-    },
-    {
-      "delay": 5000,
-      "action": {
-        "message": {
-          "sender": "player",
-          "text_message": "Pilot: Nah, I'm good."
-        }
-      }
-    },
-    {
-      "delay": 5000,
-      "action": {
-        "message": {
-          "sender": "alien",
-          "text_message": "Alien: We have lasers!"
+          "text_message": "Alien: Welcome, Earthling! Your spaceship is held together by dreams and duct tape!"
         }
       }
     },
     {
       "delay": 4000,
       "action": {
-        "message": {
-          "sender": "alien",
-          "text_message": "Alien: We have BOMBS"
+        "spawn": {
+          "enemy_type": "enemy_suicide_drone"
         }
       }
     },
     {
-      "delay": 4000,
+      "delay": 3000,
       "action": {
         "message": {
-          "sender": "alien",
-          "text_message": "Alien: We have have Missiles"
+          "sender": "pilot",
+          "text_message": "Pilot: Duct tape? More like high-tech engineering, thank you very much!"
+        }
+      }
+    },
+    {
+      "delay": 3000,
+      "action": {
+        "spawn": {
+          "enemy_type": "enemy_suicide_drone"
         }
       }
     },
@@ -132,21 +47,12 @@
       "action": {
         "message": {
           "sender": "alien",
-          "text_message": "Alien: What do you have hehe"
+          "text_message": "Alien: Your ship's charm is as outdated as your fashion sense, Earthling!"
         }
       }
     },
     {
-      "delay": 5000,
-      "action": {
-        "message": {
-          "sender": "player",
-          "text_message": "Pilot: I have 'Maa'"
-        }
-      }
-    },
-    {
-      "delay": 10,
+      "delay": 1000,
       "action": {
         "checkpoint": {
           "id": "2"
@@ -154,29 +60,62 @@
       }
     },
     {
-      "delay": 5000,
+      "delay": 3000,
       "action": {
         "message": {
-          "sender": "alien",
-          "text_message": "Alien: That’s cheating!"
+          "sender": "pilot",
+          "text_message": "Pilot: Outdated? My style is vintage, and vintage is forever!"
         }
       }
     },
     {
-      "delay": 5000,
+      "delay": 4000,
       "action": {
-        "message": {
-          "sender": "player",
-          "text_message": "Pilot: Cry about it."
+        "spawn": {
+          "enemy_type": "enemy_gunship"
         }
       }
     },
     {
-      "delay": 5000,
+      "delay": 3000,
       "action": {
         "message": {
           "sender": "alien",
-          "text_message": "Alien: Let's see how your 'Maa' armor work against these meteors"
+          "text_message": "Alien: Gunship? That thing's about as intimidating as a feather duster!"
+        }
+      }
+    },
+    {
+      "delay": 3000,
+      "action": {
+        "spawn": {
+          "enemy_type": "enemy_suicide_drone"
+        }
+      }
+    },
+    {
+      "delay": 2000,
+      "action": {
+        "message": {
+          "sender": "pilot",
+          "text_message": "Pilot: Feathers won't stop my firepower, buddy!"
+        }
+      }
+    },
+    {
+      "delay": 1000,
+      "action": {
+        "checkpoint": {
+          "id": "3"
+        }
+      }
+    },
+    {
+      "delay": 4000,
+      "action": {
+        "message": {
+          "sender": "alien",
+          "text_message": "Alien: Checkpoint three! Brace yourself for a meteor shower—nature's own slapstick comedy!"
         }
       }
     },
@@ -198,54 +137,28 @@
       }
     },
     {
-      "delay": 8000,
+      "delay": 3000,
       "action": {
         "message": {
-          "sender": "alien",
-          "text_message": "Alien: you still here?"
-        }
-      }
-    },
-    {
-      "delay": 4000,
-      "action": {
-        "message": {
-          "sender": "alien",
-          "text_message": "Alien: Dam Human!"
+          "sender": "pilot",
+          "text_message": "Pilot: Meteor showers? I've dodged worse cosmic debris on my morning commute!"
         }
       }
     },
     {
       "delay": 1000,
-      "action": {
-        "trigger": {
-          "meteor_shower": true
-        }
-      }
-    },
-    {
-      "delay": 10,
       "action": {
         "checkpoint": {
-          "id": "3"
+          "id": "4"
         }
       }
     },
     {
-      "delay": 4000,
+      "delay": 3000,
       "action": {
         "message": {
           "sender": "alien",
-          "text_message": "Alien: He he he"
-        }
-      }
-    },
-    {
-      "delay": 4000,
-      "action": {
-        "message": {
-          "sender": "alien",
-          "text_message": "Alien: i like you i have gift for you, COME!!"
+          "text_message": "Alien: Checkpoint four. I hope you're not all talk—let's see some action!"
         }
       }
     },
@@ -253,136 +166,67 @@
       "delay": 5000,
       "action": {
         "spawn": {
-          "enemy_type": "enemy_proximity_mine"
+          "enemy_type": "enemy_battleship"
         }
       }
     },
     {
-      "delay": 8000,
+      "delay": 3000,
       "action": {
         "message": {
-          "sender": "alien",
-          "text_message": "You like that HeHe"
+          "sender": "pilot",
+          "text_message": "Pilot: Battleship? Ha! I've seen lunchboxes with more bite!"
         }
       }
     },
     {
-      "delay": 5000,
-      "action": {
-        "message": {
-          "sender": "alien",
-          "text_message": "HERE IS MORE!!"
-        }
-      }
-    },
-    {
-      "delay": 5000,
+      "delay": 3000,
       "action": {
         "spawn": {
-          "enemy_type": "enemy_proximity_mine"
+          "enemy_type": "enemy_gunship"
         }
       }
     },
     {
-      "delay": 2000,
-      "action": {
-        "spawn": {
-          "enemy_type": "enemy_proximity_mine"
-        }
-      }
-    },
-    {
-      "delay": 2000,
-      "action": {
-        "spawn": {
-          "enemy_type": "enemy_proximity_mine"
-        }
-      }
-    },
-    {
-      "delay": 2000,
-      "action": {
-        "spawn": {
-          "enemy_type": "enemy_proximity_mine"
-        }
-      }
-    },
-    {
-      "delay": 2000,
-      "action": {
-        "spawn": {
-          "enemy_type": "enemy_proximity_mine"
-        }
-      }
-    },
-    {
-      "delay": 10000,
+      "delay": 3000,
       "action": {
         "message": {
           "sender": "alien",
-          "text_message": "You Humans are such a simple creatures"
-        }
-      }
-    },
-    {
-      "delay": 5000,
-      "action": {
-        "message": {
-          "sender": "alien",
-          "text_message": "Alien: Your spaceship is held together by hopes and tape"
-        }
-      }
-    },
-    {
-      "delay": 5000,
-      "action": {
-        "message": {
-          "sender": "alien",
-          "text_message": "Alien: Come human"
-        }
-      }
-    },
-    {
-      "delay": 4000,
-      "action": {
-        "message": {
-          "sender": "alien",
-          "text_message": "Alien: I have something special for you..."
-        }
-      }
-    },
-    {
-      "delay": 5000,
-      "action": {
-        "message": {
-          "sender": "alien",
-          "text_message": "Alien: DIE!!!!"
+          "text_message": "Alien: You really think your quips can defeat our might?"
         }
       }
     },
     {
       "delay": 1000,
       "action": {
+        "checkpoint": {
+          "id": "5"
+        }
+      }
+    },
+    {
+      "delay": 3000,
+      "action": {
+        "message": {
+          "sender": "pilot",
+          "text_message": "Pilot: Checkpoint five—time to unleash my secret weapon: relentless sarcasm!"
+        }
+      }
+    },
+    {
+      "delay": 4000,
+      "action": {
         "spawn": {
-          "enemy_type": "enemy_suicide_drone"
+          "enemy_type": "enemy_proximity_mine"
         }
       }
     },
     {
-      "delay": 5000,
+      "delay": 3000,
       "action": {
         "message": {
           "sender": "alien",
-          "text_message": "Alien: Does it hurt? hehe"
-        }
-      }
-    },
-    {
-      "delay": 5000,
-      "action": {
-        "message": {
-          "sender": "alien",
-          "text_message": "Alien: i got more for you <3"
+          "text_message": "Alien: Sarcasm? We'll see how it holds up against our explosive tactics!"
         }
       }
     },
@@ -395,249 +239,33 @@
       }
     },
     {
+      "delay": 3000,
+      "action": {
+        "message": {
+          "sender": "pilot",
+          "text_message": "Pilot: Explosions or not, my wit is unstoppable!"
+        }
+      }
+    },
+    {
       "delay": 1000,
       "action": {
-        "spawn": {
-          "enemy_type": "enemy_suicide_drone"
+        "checkpoint": {
+          "id": "6"
+        }
+      }
+    },
+    {
+      "delay": 3000,
+      "action": {
+        "message": {
+          "sender": "alien",
+          "text_message": "Alien: Final showdown at checkpoint six! Prepare to be overwhelmed by our cosmic charm!"
         }
       }
     },
     {
       "delay": 5000,
-      "action": {
-        "message": {
-          "sender": "alien",
-          "text_message": "Alien: hehehe"
-        }
-      }
-    },
-    {
-      "delay": 5000,
-      "action": {
-        "message": {
-          "sender": "alien",
-          "text_message": "Alien: Your tech is ancient as a dying comet,"
-        }
-      }
-    },
-    {
-      "delay": 5000,
-      "action": {
-        "spawn": {
-          "enemy_type": "enemy_proximity_mine"
-        }
-      }
-    },
-    {
-      "delay": 1000,
-      "action": {
-        "spawn": {
-          "enemy_type": "enemy_proximity_mine"
-        }
-      }
-    },
-    {
-      "delay": 1000,
-      "action": {
-        "spawn": {
-          "enemy_type": "enemy_proximity_mine"
-        }
-      }
-    },
-    {
-      "delay": 5000,
-      "action": {
-        "message": {
-          "sender": "alien",
-          "text_message": "Alien: You so dumb you have entered Astroid belt"
-        }
-      }
-    },
-    {
-      "delay": 5000,
-      "action": {
-        "trigger": {
-          "meteor_shower": true
-        }
-      }
-    },
-    {
-      "delay": 5000,
-      "action": {
-        "message": {
-          "sender": "alien",
-          "text_message": "Alien: Your ship looks like a broken radio,"
-        }
-      }
-    },
-    {
-      "delay": 1000,
-      "action": {
-        "spawn": {
-          "enemy_type": "enemy_proximity_mine"
-        }
-      }
-    },
-    {
-      "delay": 1000,
-      "action": {
-        "spawn": {
-          "enemy_type": "enemy_proximity_mine"
-        }
-      }
-    },
-    {
-      "delay": 1000,
-      "action": {
-        "spawn": {
-          "enemy_type": "enemy_suicide_drone"
-        }
-      }
-    },
-    {
-      "delay": 1000,
-      "action": {
-        "spawn": {
-          "enemy_type": "enemy_suicide_drone"
-        }
-      }
-    },
-    {
-      "delay": 8000,
-      "action": {
-        "message": {
-          "sender": "alien",
-          "text_message": "Alien: Your strategy sucks.."
-        }
-      }
-    },
-    {
-      "delay": 5000,
-      "action": {
-        "message": {
-          "sender": "alien",
-          "text_message": "Alien: Here is something big hehe"
-        }
-      }
-    },
-    {
-      "delay": 5000,
-      "action": {
-        "spawn": {
-          "enemy_type": "enemy_gunship"
-        }
-      }
-    },
-    {
-      "delay": 5000,
-      "action": {
-        "message": {
-          "sender": "alien",
-          "text_message": "Alien: Your loss is already foreseen"
-        }
-      }
-    },
-    {
-      "delay": 4000,
-      "action": {
-        "message": {
-          "sender": "alien",
-          "text_message": "Alien: we will swallow your weak world completely."
-        }
-      }
-    },
-    {
-      "delay": 5000,
-      "action": {
-        "spawn": {
-          "enemy_type": "enemy_gunship"
-        }
-      }
-    },
-    {
-      "delay": 1000,
-      "action": {
-        "spawn": {
-          "enemy_type": "enemy_gunship"
-        }
-      }
-    },
-    {
-      "delay": 1000,
-      "action": {
-        "spawn": {
-          "enemy_type": "enemy_proximity_mine"
-        }
-      }
-    },
-    {
-      "delay": 1000,
-      "action": {
-        "spawn": {
-          "enemy_type": "enemy_suicide_drone"
-        }
-      }
-    },
-    {
-      "delay": 1000,
-      "action": {
-        "spawn": {
-          "enemy_type": "enemy_suicide_drone"
-        }
-      }
-    },
-    {
-      "delay": 2000,
-      "action": {
-        "spawn": {
-          "enemy_type": "enemy_proximity_mine"
-        }
-      }
-    },
-    {
-      "delay": 2000,
-      "action": {
-        "spawn": {
-          "enemy_type": "enemy_proximity_mine"
-        }
-      }
-    },
-    {
-      "delay": 2000,
-      "action": {
-        "spawn": {
-          "enemy_type": "enemy_proximity_mine"
-        }
-      }
-    },
-    {
-      "delay": 2000,
-      "action": {
-        "spawn": {
-          "enemy_type": "enemy_proximity_mine"
-        }
-      }
-    },
-    {
-      "delay": 6000,
-      "action": {
-        "message": {
-          "sender": "alien",
-          "text_message": "Alien: Your flight maneuvers mimic a drifting space blob,"
-        }
-      }
-    },
-    {
-      "delay": 6000,
-      "action": {
-        "message": {
-          "sender": "alien",
-          "text_message": "Alien: Here come the big boy hehe"
-        }
-      }
-    },
-    {
-      "delay": 2000,
       "action": {
         "spawn": {
           "enemy_type": "enemy_battleship"
@@ -645,11 +273,20 @@
       }
     },
     {
-      "delay": 10000,
+      "delay": 3000,
+      "action": {
+        "message": {
+          "sender": "pilot",
+          "text_message": "Pilot: Bring it on, space creeps! I've got wit and firepower on my side!"
+        }
+      }
+    },
+    {
+      "delay": 5000,
       "action": {
         "message": {
           "sender": "alien",
-          "text_message": "+++  Thanks for playing the Demo!!  +++"
+          "text_message": "Alien: Your spaceship might be held together by dreams, but soon it'll be in ruins!"
         }
       }
     },
@@ -658,7 +295,16 @@
       "action": {
         "message": {
           "sender": "alien",
-          "text_message": "+++ Don't forget to give your vote +++"
+          "text_message": "Alien: +++ Thanks for playing the Demo!! +++"
+        }
+      }
+    },
+    {
+      "delay": 6000,
+      "action": {
+        "message": {
+          "sender": "alien",
+          "text_message": "Alien: +++ Don't forget to vote for intergalactic hilarity! +++"
         }
       }
     }

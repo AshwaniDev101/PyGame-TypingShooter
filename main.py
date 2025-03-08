@@ -136,13 +136,18 @@ def main(star_background=None):
                 level_selected = result["Level-Selected"]
 
                 running_load = False  # Exit selection loop
-                game = Game(level_selected=level_selected, star_background=star_background)
+                if level_selected is not None:
+                    game = Game(checkpoint_selected=level_selected, star_background=star_background)
+                    game_result = game.run()
 
-                game_result = game.run()
+                    if game_result == "main_menu":
+                        # If "Main Menu" was selected during gameplay, return to the start screen.
+                        main(star_background)
 
-                if game_result == "main_menu":
-                    # If "Main Menu" was selected during gameplay, return to the start screen.
-                    main(star_background)
+
+
+
+
 
 
             load_game_screen.draw()

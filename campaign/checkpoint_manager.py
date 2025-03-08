@@ -1,160 +1,157 @@
 import json
 import os
 import datetime
-
 import pygame
 
 from config.loader import Loader
 
-
 class CheckpointManager:
-    """
-    Manages game checkpoints by saving, loading, and listing them in a JSON file.
-    Prevents duplicate checkpoint IDs and ensures efficient file handling.
-    """
-
+    # Manages game checkpoints by saving, loading, and listing them in a JSON file.
     def __init__(self, file_name="campaign/checkpoints.json"):
-        """
-        Initializes the CheckpointManager with a persistent file path.
+        # Store both the relative filename and its absolute path.
+        self.file_name = file_name
+        self.file_path = Loader.resource_path(file_name)
 
-        :param file_name: The filename where checkpoints are stored (default: "campaign/checkpoints.json").
-        """
-        self.file_path = Loader.resource_path(file_name)  # Convert to absolute path using the resource loader.
+    def save_checkpoint(self, checkpoint_id, player):
+        # Build checkpoint data using the player's current state.
+        checkpoint_data = {
+            "id": checkpoint_id,
+            "states": {
+                "player_x": player.rect.x,
+                "player_health": player.health,
+                "player_ammo": player.ammo,
+            },
+            "timestamp": datetime.datetime.now().isoformat()
+        }
 
-    def save_checkpoint(self, checkpoint_data):
-        """
-        Saves a new checkpoint or updates an existing one if the ID matches.
+        existing_checkpoints = {}
 
-        - Reads existing data **only if necessary** to check for duplicate IDs.
-        - Updates a checkpoint if it already exists; otherwise, appends a new one.
-        - Ensures data integrity and avoids unnecessary file reads/writes.
-
-        :param checkpoint_data: Dictionary containing checkpoint details.
-        """
-
-        existing_checkpoints = {}  # Dictionary to store checkpoints by ID
-
-        # Check if the file exists and is not empty before attempting to read
+        # Load existing checkpoints if the file exists and is not empty.
         if os.path.exists(self.file_path) and os.path.getsize(self.file_path) > 0:
             try:
-                with open(self.file_path, "r", encoding="utf-8") as f:
-                    checkpoints_list = json.load(f)  # Load existing checkpoint list
-
-                    # Convert list of checkpoints to a dictionary {id: checkpoint_data}
-                    existing_checkpoints = {cp["id"]: cp for cp in checkpoints_list}
-
+                checkpoints_list = Loader.load_json(self.file_name)
+                # Convert the list of checkpoints to a dict keyed by id.
+                for cp in checkpoints_list:
+                    cp_id = cp.get("id")
+                    try:
+                        cp_id = int(cp_id)
+                    except (ValueError, TypeError):
+                        pass
+                    existing_checkpoints[cp_id] = cp
             except (json.JSONDecodeError, KeyError):
                 print("Warning: Checkpoint file is corrupted. Resetting checkpoints.")
-                existing_checkpoints = {}  # Reset if the file is corrupted
+                existing_checkpoints = {}
 
-        # Add or update the checkpoint
-        checkpoint_data["timestamp"] = datetime.datetime.now().isoformat()  # Add current timestamp
-        existing_checkpoints[checkpoint_data["id"]] = checkpoint_data  # Insert/update checkpoint by ID
+        # Ensure the checkpoint id is an int if possible.
+        try:
+            checkpoint_id = int(checkpoint_id)
+        except (ValueError, TypeError):
+            pass
+        checkpoint_data["id"] = checkpoint_id
 
-        # Save the updated checkpoints back to the file
+        # Insert or update the checkpoint.
+        existing_checkpoints[checkpoint_id] = checkpoint_data
+
+        # Save the updated checkpoints back to the file.
         with open(self.file_path, "w", encoding="utf-8") as f:
-            json.dump(list(existing_checkpoints.values()), f, indent=4)  # type:ignore
-            # Convert dict back to list for storage
-        print(f"Checkpoint '{checkpoint_data.get('id')}' saved successfully!")  # Confirmation message
+            json.dump(list(existing_checkpoints.values()), f, indent=4)
+        print(f"Checkpoint '{checkpoint_data.get('id')}' saved successfully!")
 
-    def load_checkpoints(self):
-        """
-        Loads and returns a list of all saved checkpoints.
-
-        - Checks if the file exists before attempting to read.
-        - Handles corrupted files gracefully by returning an empty list.
-
-        :return: List of checkpoint dictionaries.
-        """
-        if os.path.exists(self.file_path) and os.path.getsize(
-                self.file_path) > 0:  # Ensure the file exists and is not empty
+    def json_file_load_checkpoints(self):
+        # Loads and returns a list of all saved checkpoints.
+        if os.path.exists(self.file_path) and os.path.getsize(self.file_path) > 0:
             try:
-                with open(self.file_path, "r", encoding="utf-8") as f:
-                    return json.load(f)  # Load and return checkpoint data
+                return Loader.load_json(self.file_name)
             except json.JSONDecodeError:
                 print("Error: Checkpoint file is corrupted. Returning an empty list.")
-                return []  # Return an empty list if JSON is invalid
-        return []  # Return an empty list if the file doesn't exist or is empty
+                return []
+        return []
 
     def load_checkpoint_by_id(self, checkpoint_id):
-        """
-        Loads a specific checkpoint by its ID.
-
-        - Reads the file only if necessary.
-        - Searches for the checkpoint efficiently.
-        - Handles missing or corrupted files gracefully.
-
-        :param checkpoint_id: The ID of the checkpoint to load.
-        :return: Dictionary containing the checkpoint data, or None if not found.
-        """
+        # Loads a specific checkpoint by its id.
         if not os.path.exists(self.file_path) or os.path.getsize(self.file_path) == 0:
             print("No checkpoints found.")
-            return None  # No checkpoint file or it's empty
+            return None
 
         try:
-            with open(self.file_path, "r", encoding="utf-8") as f:
-                checkpoints = json.load(f)  # Load all checkpoints
+            checkpoints = Loader.load_json(self.file_name)
+            try:
+                checkpoint_id = int(checkpoint_id)
+            except (ValueError, TypeError):
+                pass
 
-            # Search for the checkpoint with the given ID
             for checkpoint in checkpoints:
-                if checkpoint.get("id") == checkpoint_id:
-                    return checkpoint  # Return the found checkpoint
+                cp_id = checkpoint.get("id")
+                try:
+                    cp_id = int(cp_id)
+                except (ValueError, TypeError):
+                    pass
+                if cp_id == checkpoint_id:
+                    return checkpoint
 
             print(f"Checkpoint '{checkpoint_id}' not found.")
-            return None  # No matching checkpoint found
+            return None
 
         except json.JSONDecodeError:
             print("Error: Checkpoint file is corrupted.")
-            return None  # Handle corrupted file safely
+            return None
 
-    def build_checkpoint(self, json_object, player):
-        """
-        Constructs a checkpoint dictionary from a given JSON object.
+    # def build_checkpoint(self, json_object, player):
+    #     # Constructs a checkpoint dictionary from a given JSON object and player state.
+    #     checkpoint_id = json_object.get("id", 0)
+    #     try:
+    #         checkpoint_id = int(checkpoint_id)
+    #     except (ValueError, TypeError):
+    #         pass
+    #
+    #     return {
+    #         "id": checkpoint_id,
+    #         "states": {
+    #             "player_position": {"x": player.rect.x, "y": player.rect.y},
+    #             "player_health": player.health,
+    #             "player_ammo": player.ammo,
+    #             "player_score": getattr(player, "score", 0)
+    #         },
+    #         "timestamp": pygame.time.get_ticks()
+    #     }
 
-        - Extracts ID, title, and description.
-        - Captures the current player state (position, health, ammo, score).
-        - Adds a timestamp for tracking.
+    def get_list_of_unlocked_checkpoints(self):
+        checkpoints = self.json_file_load_checkpoints()
+        checkpoint_list = []
 
-        :param player:
-        :param json_object: The JSON object containing checkpoint data.
-        :return: A structured checkpoint dictionary.
-        """
-        return {
-            "id": json_object.get("id", "default_checkpoint"),
-            "title": json_object.get("title", "Checkpoint"),
-            "description": json_object.get("description", ""),
-            "states": {
-                "player_position": {"x": player.rect.x, "y": player.rect.y},
-                "player_health": player.health,
-                "player_ammo": player.ammo,
-                "player_score": getattr(player, "score", 0)
-            },
-            "timestamp": pygame.time.get_ticks()
-        }
+
+        for cp in checkpoints:
+
+            checkpoint_list.append(int(cp.get('id')))
+
+
+        return  checkpoint_list
+
+    def delete_all_except_checkpoint_1(self):
+        # Load existing checkpoints
+        checkpoints = self.json_file_load_checkpoints()
+
+        # Filter only checkpoint with id = 1
+        filtered_checkpoints = [cp for cp in checkpoints if cp.get("id") == 1]
+
+        # Save back only the remaining checkpoint
+        with open(self.file_path, "w", encoding="utf-8") as f:
+            json.dump(filtered_checkpoints, f, indent=4)
+
+        print("Deleted all checkpoints except checkpoint with id = 1.")
 
     def print_checkpoints(self):
-        """
-        Prints a summary of all saved checkpoints in a readable format.
+        # Prints a summary of all saved checkpoints.
+        checkpoints = self.json_file_load_checkpoints()
 
-        - Calls `load_checkpoints()` to retrieve the saved data.
-        - Displays relevant checkpoint information including position, health, ammo, and score.
-        - Handles the case where no checkpoints exist.
-        """
-        checkpoints = self.load_checkpoints()  # Load all saved checkpoints
-
-        if not checkpoints:  # If no checkpoints exist, notify the user
+        if not checkpoints:
             print("No checkpoints found!")
             return
 
-        # Iterate through all checkpoints and print their details
         for cp in checkpoints:
-            states = cp.get("states", {})  # Extract game state details
-            pos = states.get("player_position",
-                             {"x": "N/A", "y": "N/A"})  # Get player's position (default to "N/A" if missing)
-
-            # Print checkpoint details in a structured format
-            print(f"Checkpoint {cp.get('id')}: {cp.get('title')}\n"
-                  f"  Description: {cp.get('description')}\n"
-                  f"  Position: {pos}, Health: {states.get('player_health')}, "
-                  f"Ammo: {states.get('player_ammo')}, Score: {states.get('player_score')}\n"
+            states = cp.get("states", {})
+            print(f"Checkpoint {cp.get('id')}\n"
+                  f"  States: {states}\n"
                   f"  Timestamp: {cp.get('timestamp')}\n")
+
+

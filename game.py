@@ -5,6 +5,7 @@ import pygame
 
 from campaign.checkpoint_manager import CheckpointManager
 from config import constants, game_settings as settings
+from enemies.checkpoint_divider import CheckpointDivider
 from enemies.enemy import Enemy
 from enemies.enemy_battleship import EnemyBattleship
 from enemies.enemy_cluster_bomb import EnemyClusterBomb
@@ -13,9 +14,9 @@ from enemies.enemy_meteor import EnemyMeteor
 from enemies.enemy_proximity_mine import EnemyProximityMines
 from enemies.enemy_sucide_drone import EnemySuicideDrone
 from config.loader import Loader
+from menu_screens.upgrade_screen import UpgradeWindow
 from player import Player
 from shooting.bullet_manager import BulletManager
-from effects.stars import StarBackground
 from menu_screens.in_game_menu import InGameMenu
 from game_window import GameWindow
 from campaign import jcon
@@ -23,7 +24,7 @@ from campaign import jcon
 
 # ----------------- Game Class (Main Game Logic) -----------------
 class Game:
-    def __init__(self, level_selected, star_background, screen=None):
+    def __init__(self, checkpoint_selected, star_background, screen=None):
         pygame.init()
 
         if screen is None:
@@ -36,30 +37,28 @@ class Game:
         # )
         self.clock = pygame.time.Clock()  # Controls FPS
 
-
         self.player = Player()  # Create the player object
         self.bullets_manager = BulletManager(self.player)  # Bullet manager
         self.stars = star_background  # Star background effect for gameplay
         self.enemy_list: list[Enemy] = []  # List to store enemy objects
 
 
+
         # Menus and Windows
         self.menu = InGameMenu(self.screen)  # In-game menu (for pause/resume)
         self.game_window = GameWindow(self.screen, self.player)  # HUD/info window
-        self.game_over = False      # Game over flag
+        self.game_over = False      # Game over a flag
         self.paused = False         # Pause flag
         self.start_time = pygame.time.get_ticks()  # Record game start time
 
-
-        # Set time for next meteor spawn using a random interval
+        # Set time for the next meteor spawn using a random interval
         self.next_meteor_spawn_time = self.get_next_meteor_spawn_delay()
         self.meteor_shower = False # When True Start spawning meteors
         # Additional game state variables
-        self.enemy_selection_mode = False # if True player would need to select the enemy first before shooting
-        self.selected_enemy = None  # Currently targeted enemy
+        self.enemy_selection_mode = False # if True player needs to select the enemy first before shooting
+        self.selected_enemy = None  # Currently focused on an enemy
 
-
-
+        self.is_boss_active = False  # Temp way to tigger the end of a Boss fight so that a campaign can continue
 
         # Campaign Management
         self.checkpoint_manager = CheckpointManager()
@@ -67,13 +66,13 @@ class Game:
         self.last_campaign_event_time = 0
         self.next_campaign_event_index = 0
 
+        # # Checkpoint handling
 
-        # Checkpoint handling
-        self.selected_level = level_selected
         self.checkpoint_map = {}
-        self.load_game_campaign()
+        self.load_game_campaign(checkpoint_selected)
 
-        # self.triggered_events = set()  # Track which JSON events have been triggered
+        # Upgrade window screen
+        self.upgrade_window = UpgradeWindow(self.screen)
 
 
     def reset_game(self):
@@ -98,18 +97,23 @@ class Game:
         self.meteor_shower = False
         self.selected_enemy = None
 
+        self.is_boss_active = False  # Temp way to tigger the end of a Boss fight so that a campaign can continue
+
         # Reset campaign events so they start from the beginning
         # self.triggered_events.clear()
-        self.load_game_campaign()
+
+        # the get number of the checkpoints
+        checkpoint_level = len(self.checkpoint_manager.get_list_of_unlocked_checkpoints())
+        self.load_game_campaign(checkpoint_level)
 
 
-    def load_game_campaign(self):
+    def load_game_campaign(self,checkpoint_level):
         data = Loader.load_json("campaign/game_event.json")
         self.game_campaign_event_list = data["events"]  # Extract the list of events from the JSON data
         # self.next_campaign_event_index = start_from_index  # Reset the event index from 0
 
         self.build_checkpoint_map()
-        checkpoint_index = self.checkpoint_map.get(f"{self.selected_level}")
+        checkpoint_index = self.checkpoint_map.get(f"{checkpoint_level}")
         self.next_campaign_event_index = checkpoint_index
 
         self.last_campaign_event_time = pygame.time.get_ticks()  # Record the current time for delays
@@ -150,7 +154,6 @@ class Game:
 
                     elif jsonObject[jcon.ENEMY_TYPE] == jcon.EnemyType.ENEMY_PROXIMITY_MINE:
                         self.enemy_list.append(EnemyProximityMines(self.player))
-                        self.enemy_list.append(EnemyProximityMines(self.player))
 
                     elif jsonObject[jcon.ENEMY_TYPE] == jcon.EnemyType.ENEMY_CLUSTER_BOMB:
                         self.enemy_list.append(EnemyClusterBomb(self.player))
@@ -160,9 +163,11 @@ class Game:
 
                     elif jsonObject[jcon.ENEMY_TYPE] == jcon.EnemyType.ENEMY_GUNSHIP:
                         self.enemy_list.append(EnemyGunship(self.player, self.enemy_list))
+                        self.is_boss_active = True
 
                     elif jsonObject[jcon.ENEMY_TYPE] == jcon.EnemyType.ENEMY_BATTLESHIP:
                         self.enemy_list.append(EnemyBattleship(self.player, self.enemy_list))
+                        self.is_boss_active = True
 
                     print(f"({key}) Enemy-spawn {jsonObject[jcon.ENEMY_TYPE]}")
 
@@ -187,7 +192,10 @@ class Game:
 
                 elif key == "checkpoint":
 
-                    print(f"Starting from checkpoint id {jsonObject["id"]}")
+                    id = int(jsonObject["id"])
+                    print(f"Starting from checkpoint id {id}")
+                    self.enemy_list.append(CheckpointDivider(self.player, self.checkpoint_manager, id))
+
 
                     # if isinstance(jsonObject["action"], dict):
                         # checkpoint_id = jsonObject["action"]["checkpoint"]  # Extract checkpoint (string)
@@ -202,6 +210,10 @@ class Game:
     def process_json_campaign(self):
         # Don't process campaign events while paused
         if self.paused:
+            return
+
+        # Check if there's an active enemy that's still alive
+        if self.is_boss_active:
             return
 
         current_time = pygame.time.get_ticks()  # Current time in milliseconds
@@ -220,6 +232,12 @@ class Game:
         if event.key == pygame.K_ESCAPE:
             self.menu.toggle()
             self.paused = self.menu.active
+
+        elif event.key == pygame.K_TAB:
+
+            pass
+            # self.paused = not self.paused  # Toggle pause state
+            # self.upgrade_window.toggle()
 
         elif event.key == pygame.K_F10:
             # self.reset_game()
@@ -309,6 +327,17 @@ class Game:
         if self.player.health > 0:
             # Iterate over enemies and shoot the first enemy whose word starts with the typed letter.
             for enemy in self.enemy_list:
+
+                # it's not working because I'm check is enemy defeated only when im typing which won't always work
+                # This way of enemy death detection does not work
+                # This is a temp way to handle boss fight it help with pausing the campaign events until boss defeated
+                # if isinstance(enemy, (EnemyGunship, EnemyBattleship)) :
+                #
+                #     if enemy.is_defeated():
+                #         print("Boss dead")
+
+
+
                 if enemy.word and enemy.word[0].lower() == letter_typed:
                     if self.player.ammo > 0:
                         # Rotate the player's gun toward this enemy.
@@ -365,6 +394,8 @@ class Game:
             self.bullets_manager.update_and_draw(self.screen, self.enemy_list)
             self.player.handle_movement()
             self.player.draw(self.screen) # updated
+
+
             if not self.game_over:
 
                 # Update Meteors in the game
@@ -378,6 +409,12 @@ class Game:
             for enemy in self.enemy_list[:]:
                 enemy.move(self.game_over)
                 enemy.draw(self.screen)
+
+
+                # Checking for a boss enemy and resuming the campaign
+                if isinstance(enemy, (EnemyGunship, EnemyBattleship)):
+                    if enemy.is_defeated():
+                        self.is_boss_active = False
 
                 # Shoot() function specific to Enemy Gunships
                 # if isinstance(enemy, EnemyGunship):  # Ensure only gunships shoot
@@ -394,6 +431,7 @@ class Game:
                 #             enemy.shells.remove(shell)
 
 
+                # Delete off-screen enemy
                 if (
                     enemy.rect.top >= constants.SCREEN_HEIGHT + 20
                     or enemy.rect.left <= -50
@@ -402,6 +440,8 @@ class Game:
                     self.enemy_list.remove(enemy)
                     if enemy == self.selected_enemy:
                         self.selected_enemy = None
+
+                # Player Coalition detection
                 if not self.game_over and enemy.rect.colliderect(self.player.rect):
                     self.player.take_damage(1, self.game_window)
                     # pygame.mixer.Sound("assets/sounds/player_got_hit.mp3").play()
@@ -410,6 +450,9 @@ class Game:
                 if self.player.health == 0:
                     self.game_over = True
                     self.player.set_dead()
+
+
+
             self.game_window.display_states()
         self.menu.draw_menu()
         self.game_window.draw_player_hit_effect()
@@ -452,6 +495,10 @@ class Game:
             self.update_game_state()
 
             self.manage_game_sounds()
+
+            # Upgrade window
+            self.upgrade_window.draw()
+
             pygame.display.update()
         pygame.quit()
 

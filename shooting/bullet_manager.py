@@ -39,7 +39,7 @@ class BulletManager:
         bullet = Bullet(firing_point, target_enemy, letter)
         self.bullets.append(bullet)
 
-    def handle_bullet_collision(self, bullet, enemies):
+    def handle_bullet_collision(self, bullet, enemy_list):
         # Handle what happens when a bullet hits an enemy
         if bullet.rect.colliderect(bullet.target.rect):
             bullet.target.reduce_hit_count()
@@ -49,13 +49,13 @@ class BulletManager:
             self.bullet_hit_sound.play()
 
             if bullet.target.is_defeated():
-                self.handle_enemy_defeated(bullet.target, enemies)
+                self.handle_enemy_defeated(bullet.target, enemy_list)
 
 
     # =============================================
     # Enemy Interaction Functions
     # =============================================
-    def handle_enemy_defeated(self, enemy, enemies):
+    def handle_enemy_defeated(self, enemy, enemy_list):
         # Handle the logic when an enemy is defeated
         self.explosion_channel.play(self.explosion_sound)
         self.create_shockwave(enemy.rect.centerx, enemy.rect.centery)
@@ -65,14 +65,14 @@ class BulletManager:
             self.create_plus_x_effect(enemy.rect.centerx, enemy.rect.centery, drop_count)
             self.player.ammo += drop_count
         pygame.time.delay(50)
-        enemies.remove(enemy)
+        enemy_list.remove(enemy)
 
     # =============================================
     # Main Update and Draw Function
     # =============================================
-    def update_and_draw(self, screen, enemies):
+    def update_and_draw(self, screen, enemy_list):
         # Update and draw all bullets, particles, shockwaves, and animated
-        self.update_bullets(screen, enemies)
+        self.update_bullets(screen, enemy_list)
         self.update_enemy_bullets(screen)
         self.update_particles(screen)
         self.update_shockwaves(screen)
@@ -81,15 +81,15 @@ class BulletManager:
     # =============================================
     # Individual Update and Draw Methods
     # =============================================
-    def update_bullets(self, screen, enemies):
+    def update_bullets(self, screen, enemy_list):
         # Update and draw all bullets
         for bullet in self.bullets[:]:
-            if bullet.target not in enemies:
+            if bullet.target not in enemy_list:
                 self.bullets.remove(bullet)
                 continue
             bullet.update()
             bullet.draw(screen)
-            self.handle_bullet_collision(bullet, enemies)
+            self.handle_bullet_collision(bullet, enemy_list)
 
     def update_enemy_bullets(self, screen):
         for bullet in self.enemy_bullets[:]:

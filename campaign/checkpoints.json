@@ -1,32 +1,11 @@
 [
     {
-        "id": "checkpoint_1",
-        "title": "Checkpoint",
-        "description": "first check point",
+        "id": 1,
         "states": {
-            "player_position": {
-                "x": 535,
-                "y": 847
-            },
+            "player_x": 535,
             "player_health": 3,
-            "player_ammo": 100,
-            "player_score": 0
+            "player_ammo": 100
         },
-        "timestamp": "2025-02-28T00:39:10.350826"
-    },
-    {
-        "id": "checkpoint_2",
-        "title": "Checkpoint",
-        "description": "first check point",
-        "states": {
-            "player_position": {
-                "x": 535,
-                "y": 847
-            },
-            "player_health": 3,
-            "player_ammo": 100,
-            "player_score": 0
-        },
-        "timestamp": "2025-02-28T00:39:20.378957"
+        "timestamp": "2025-03-08T14:52:45.192274"
     }
 ]

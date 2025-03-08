@@ -6,8 +6,10 @@ SCREEN_HEIGHT = 720
 FPS = 60
 
 # Colors
+WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 YELLOW = (255, 255, 0)
+
 
 # Player settings
 PLAYER_SPEED = 4

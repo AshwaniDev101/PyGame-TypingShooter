@@ -2,6 +2,7 @@ import pygame
 import random
 import math
 from config import constants
+from config.loader import Loader
 
 # Named constants for cloud positioning
 CLOUD_SPAWN_Y = -1000         # Y position where clouds spawn
@@ -16,22 +17,22 @@ class StarBackground:
     def __init__(self):
         # Number of stars and twinkling stars per layer.
         self.num_stars = 80
-        self.num_twinkles = 50
+        self.num_twinkles = 100
 
         # Set speeds for each star layer:
         # Bottom (farthest) is slow, middle is moderate, top (closest) is fast.
         self.bottom_star_speed = 0.5
         self.middle_star_speed = 1
-        self.top_star_speed = 2
+        self.top_layer_star_speed = 2
 
         # Generate star layers as mutable lists (using list comprehensions).
-        self.bottom_stars = self.generate_stars(self.num_stars, sizes=[1, 3])
-        self.bottom_twinkles = self.generate_twinkling_stars(self.num_twinkles, sizes=[1, 2])
-        self.middle_stars = self.generate_stars(self.num_stars, sizes=[1, 2])
-        self.top_stars = self.generate_stars(self.num_stars, sizes=[1, 2])
+        self.bottom_layer_stars = self.generate_stars(self.num_stars, sizes=[1, 2])
+        self.bottom_layer_twinkles = self.generate_twinkling_stars(self.num_twinkles, sizes=[1, 2])
+        self.middle_layer_stars = self.generate_stars(self.num_stars, sizes=[1, 2])
+        self.top_layer_stars = self.generate_stars(self.num_stars, sizes=[1, 2])
 
         # Cache cloud images (load once).
-        self.cloud_images = [pygame.image.load(f"assets/images/space_elements/cloud_{i}.png").convert_alpha() for i in range(10)]
+        self.cloud_images = [Loader.load_image(f"assets/images/space_elements/cloud_{i}.png") for i in range(10)]
 
         # Pre-populate clouds: their y positions are randomized between CLOUD_SPAWN_Y and SCREEN_HEIGHT.
         self.clouds = self.generate_initial_clouds(10)
@@ -98,15 +99,15 @@ class StarBackground:
 
     # Draw the bottom (farthest) layer (includes twinkling stars).
     def draw_bottom_layer(self, screen, current_time):
-        self.update_and_draw_layer(screen, current_time, self.bottom_stars, self.bottom_star_speed, self.bottom_twinkles)
+        self.update_and_draw_layer(screen, current_time, self.bottom_layer_stars, self.bottom_star_speed, self.bottom_layer_twinkles)
 
     # Draw the middle layer (only regular stars).
     def draw_middle_layer(self, screen, current_time):
-        self.update_and_draw_layer(screen, current_time, self.middle_stars, self.middle_star_speed)
+        self.update_and_draw_layer(screen, current_time, self.middle_layer_stars, self.middle_star_speed)
 
     # Draw the top layer (only regular stars).
     def draw_top_layer(self, screen, current_time):
-        self.update_and_draw_layer(screen, current_time, self.top_stars, self.top_star_speed)
+        self.update_and_draw_layer(screen, current_time, self.top_layer_stars, self.top_layer_star_speed)
 
     # Update and draw all layers (stars and clouds) to create the parallax effect.
     def update_and_draw(self, screen, current_time):
@@ -117,7 +118,7 @@ class StarBackground:
 
     # Set new top speed and adjust middle and bottom speeds proportionally.
     def set_top_speed(self, speed):
-        self.top_star_speed = speed
+        self.top_layer_star_speed = speed
         self.middle_star_speed = speed / 2.0
         self.bottom_star_speed = speed / 4.0
 
