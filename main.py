@@ -1,3 +1,5 @@
+import ctypes
+
 import pygame
 import sys
 
@@ -12,22 +14,31 @@ from menu_screens.start_menu_screen import StartScreen
 from effects.stars import StarBackground
 
 
+try:
+    ctypes.windll.user32.SetProcessDPIAware()
+except Exception as e:
+    print("Could not set DPI Awareness:", e)
+
 
 def get_monitor_height_width():
     # Ensure Pygame is initialized
     if not pygame.get_init():
         pygame.init()
 
-    # Retrieve available display modes (highest resolution is usually first)
-    modes = pygame.display.list_modes()
+    # Retrieve display info for the current resolution.
+    info = pygame.display.Info()
+    full_width = info.current_w
+    full_height = info.current_h
 
-    if modes:
-        monitor_width = modes[0][0] - 800
-        monitor_height = modes[0][1] - 100  # Adjust height as needed
-    else:
-        # Fallback if no modes are returned
-        monitor_width = 1280  # Default width
-        monitor_height = 720  # Default height
+    scale_width = 0.6
+    scale_height = 0.92
+
+    # Scale the dimensions relative to the full resolution.
+    monitor_width = int(full_width * scale_width)
+    monitor_height = int(full_height * scale_height)
+
+    print(f"Monitor resolution (from pygame.display.Info()): {full_width}x{full_height}")
+    print(f"Scaled window dimensions: {monitor_width}x{monitor_height}")
 
     return monitor_width, monitor_height
 

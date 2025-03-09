@@ -1,0 +1,105 @@
+{
+ "version": "auto-py-to-exe-configuration_v1",
+ "pyinstallerOptions": [
+  {
+   "optionDest": "noconfirm",
+   "value": true
+  },
+  {
+   "optionDest": "filenames",
+   "value": "D:/DSA/Pygame Game Jam/main.py"
+  },
+  {
+   "optionDest": "onefile",
+   "value": false
+  },
+  {
+   "optionDest": "console",
+   "value": false
+  },
+  {
+   "optionDest": "icon_file",
+   "value": "D:/DSA/Pygame Game Jam/__pycache__/alien_in_monitor.ico"
+  },
+  {
+   "optionDest": "name",
+   "value": "Typing Shooter"
+  },
+  {
+   "optionDest": "clean_build",
+   "value": false
+  },
+  {
+   "optionDest": "strip",
+   "value": false
+  },
+  {
+   "optionDest": "noupx",
+   "value": false
+  },
+  {
+   "optionDest": "disable_windowed_traceback",
+   "value": false
+  },
+  {
+   "optionDest": "uac_admin",
+   "value": false
+  },
+  {
+   "optionDest": "uac_uiaccess",
+   "value": false
+  },
+  {
+   "optionDest": "argv_emulation",
+   "value": false
+  },
+  {
+   "optionDest": "bootloader_ignore_signals",
+   "value": false
+  },
+  {
+   "optionDest": "datas",
+   "value": "D:/DSA/Pygame Game Jam/game.py;."
+  },
+  {
+   "optionDest": "datas",
+   "value": "D:/DSA/Pygame Game Jam/game_window.py;."
+  },
+  {
+   "optionDest": "datas",
+   "value": "D:/DSA/Pygame Game Jam/player.py;."
+  },
+  {
+   "optionDest": "datas",
+   "value": "D:/DSA/Pygame Game Jam/assets;assets/"
+  },
+  {
+   "optionDest": "datas",
+   "value": "D:/DSA/Pygame Game Jam/campaign;campaign/"
+  },
+  {
+   "optionDest": "datas",
+   "value": "D:/DSA/Pygame Game Jam/config;config/"
+  },
+  {
+   "optionDest": "datas",
+   "value": "D:/DSA/Pygame Game Jam/effects;effects/"
+  },
+  {
+   "optionDest": "datas",
+   "value": "D:/DSA/Pygame Game Jam/enemies;enemies/"
+  },
+  {
+   "optionDest": "datas",
+   "value": "D:/DSA/Pygame Game Jam/menu_screens;menu_screens/"
+  },
+  {
+   "optionDest": "datas",
+   "value": "D:/DSA/Pygame Game Jam/shooting;shooting/"
+  }
+ ],
+ "nonPyinstallerOptions": {
+  "increaseRecursionLimit": true,
+  "manualArguments": ""
+ }
+}

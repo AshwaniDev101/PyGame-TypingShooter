@@ -2,7 +2,7 @@ import pygame
 
 # Screen settings
 SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 720
+SCREEN_HEIGHT = 500
 FPS = 60
 
 # Colors
