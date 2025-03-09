@@ -58,6 +58,7 @@ def main(star_background=None):
 
     clock = pygame.time.Clock()
 
+
     # =========  Debugging ====================================================
     debug_mode = False  # Set to True to skip the start menu_screens for debugging
     if debug_mode:
