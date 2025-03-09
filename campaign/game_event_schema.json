@@ -24,19 +24,27 @@
                     "properties": {
                       "sender": {
                         "type": "string",
-                        "enum": ["player", "alien", "ai"]
+                        "enum": [
+                          "player",
+                          "alien"
+                        ]
                       },
                       "text_message": {
                         "type": "string",
                         "minLength": 1,
-                        "maxLength": 100
+                        "maxLength": 160
                       }
                     },
-                    "required": ["sender", "text_message"],
+                    "required": [
+                      "sender",
+                      "text_message"
+                    ],
                     "additionalProperties": false
                   }
                 },
-                "required": ["message"],
+                "required": [
+                  "message"
+                ],
                 "additionalProperties": false
               },
               {
@@ -53,11 +61,15 @@
                         "minimum": 1
                       }
                     },
-                    "required": ["meteor_shower"],
+                    "required": [
+                      "meteor_shower"
+                    ],
                     "additionalProperties": false
                   }
                 },
-                "required": ["trigger"],
+                "required": [
+                  "trigger"
+                ],
                 "additionalProperties": false
               },
               {
@@ -82,11 +94,15 @@
                         "minLength": 1
                       }
                     },
-                    "required": ["enemy_type"],
+                    "required": [
+                      "enemy_type"
+                    ],
                     "additionalProperties": false
                   }
                 },
-                "required": ["spawn"],
+                "required": [
+                  "spawn"
+                ],
                 "additionalProperties": false
               },
               {
@@ -99,59 +115,32 @@
                         "type": "string",
                         "minLength": 1,
                         "description": "Unique identifier for the checkpoint."
-                      },
-                      "title": {
-                        "type": "string",
-                        "description": "Optional title for the checkpoint."
-                      },
-                      "description": {
-                        "type": "string",
-                        "description": "Optional description for the checkpoint."
-                      },
-                      "states": {
-                        "type": "object",
-                        "properties": {
-                          "player_position": {
-                            "type": "object",
-                            "properties": {
-                              "x": { "type": "integer" },
-                              "y": { "type": "integer" }
-                            },
-                            "required": ["x", "y"],
-                            "additionalProperties": false
-                          },
-                          "player_health": {
-                            "type": "integer",
-                            "minimum": 0
-                          },
-                          "player_ammo": {
-                            "type": "integer",
-                            "minimum": 0
-                          },
-                          "player_score": {
-                            "type": "integer",
-                            "minimum": 0
-                          }
-                        },
-                        "required": ["player_position", "player_health", "player_ammo", "player_score"],
-                        "additionalProperties": true
                       }
                     },
-                    "required": ["id", "states"],
+                    "required": [
+                      "id"
+                    ],
                     "additionalProperties": false
                   }
                 },
-                "required": ["checkpoint"],
+                "required": [
+                  "checkpoint"
+                ],
                 "additionalProperties": false
               }
             ]
           }
         },
-        "required": ["delay", "action"],
+        "required": [
+          "delay",
+          "action"
+        ],
         "additionalProperties": false
       }
     }
   },
-  "required": ["events"],
+  "required": [
+    "events"
+  ],
   "additionalProperties": false
 }

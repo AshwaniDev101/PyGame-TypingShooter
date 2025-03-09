@@ -11,8 +11,10 @@ from enemies.enemy import Enemy
 class EnemyGunship(Enemy):
     def __init__(self, player, enemy_list):
         super().__init__(player)
+
+        random_number = random.randint(1, 5)
         # Load the enemy gunship image using Loader
-        self.image = Loader.load_image("assets/images/alien_ships/alien_ship_0.png")
+        self.image = Loader.load_image(f"assets/images/enemy_ships/enemyRed{random_number}.png")
         # Start off-screen (centered at X=400; adjust as needed)
         self.rect = self.image.get_rect(center=(400, 0))
 
@@ -132,8 +134,8 @@ class EnemyGunship(Enemy):
 #     def __init__(self, player, bullet_manager):
 #         super().__init__(player)
 #
-#         # self.image = pygame.image.load("assets/images/alien_ships/alien_ship_0.png").convert_alpha()
-#         self.image = Loader.load_image("assets/images/alien_ships/alien_ship_0.png")
+#         # self.image = pygame.image.load("assets/images/enemy_ships/alien_ship_0.png").convert_alpha()
+#         self.image = Loader.load_image("assets/images/enemy_ships/alien_ship_0.png")
 #         self.rect = self.image.get_rect(center=(400, 0))  # Start off-screen
 #
 #         # === We need this to follow players movements

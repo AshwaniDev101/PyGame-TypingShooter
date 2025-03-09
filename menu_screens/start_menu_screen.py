@@ -85,7 +85,8 @@ class StartScreen:
         self.star_background = star_background
 
         # Menu options
-        self.menu_options = ["Load Game", "Settings", "Layout", "Exit"]
+        # self.menu_options = ["Start Game", "Settings", "Layout", "Exit"]
+        self.menu_options = ["Start Game", "Layout", "About", "Exit"]
         self.font = Loader.load_font("assets/fonts/BungeeInline-Regular.ttf", 16)
         self.option_rects = []  # For clickable menu options
         self.hover_index = None  # Tracks the current hovered option

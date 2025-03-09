@@ -6,7 +6,7 @@ class InGameMenu:
         self.width = screen.get_width() // 4  # Menu covers 25% of the left screen
         self.active = False
         self.font = pygame.font.Font(None, 22)  # Thinner text
-        self.menu_options = ["Resume", "Restart", "Main Menu", "Quit"]  # Added "Restart"
+        self.menu_options = ["Resume", "Load checkpoint", "Main Menu", "Quit"]  # Added "Restart"
         self.option_rects = []
         self.hover_index = None
         self.transparency = 5  # Always ultra-transparent
@@ -41,7 +41,7 @@ class InGameMenu:
         if self.menu_options[index] == "Resume":
             self.toggle()
             return "resume"
-        elif self.menu_options[index] == "Restart":
+        elif self.menu_options[index] == "Load checkpoint":
             return "restart"  # Return "restart" to notify main.py
         elif self.menu_options[index] == "Main Menu":
             return "main_menu"  # Signal to return to the start screen

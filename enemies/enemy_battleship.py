@@ -13,7 +13,7 @@ class EnemyBattleship(Enemy):
     def __init__(self, player, enemy_list):
         super().__init__(player)  # Initialize using Enemy class
         # Load the battleship image using Loader
-        self.image = Loader.load_image("assets/images/gunships/gunship_0.png")
+        self.image = Loader.load_image("assets/images/battleships/battleship_0.png")
         # Set a random starting X position and off-screen Y position
         self.rect = self.image.get_rect(center=(random.randint(100, 700), -50))
         self.speed = 2  # Movement speed

@@ -8,11 +8,6 @@ METEOR_SHOWER = "meteor_shower"
 ENEMY_TYPE = "enemy_type"
 
 
-class Sender(str, Enum):
-    PLAYER = "player"
-    ALIEN = "alien"
-    AI = "ai"
-
 class Meteor(str, Enum):
     START = "start"
     STOP = "stop"

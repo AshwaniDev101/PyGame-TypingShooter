@@ -30,7 +30,6 @@ ROW_COUNT_HEIGHT = FIRST_ROW_Y_OFFSET + (NUM_ROWS - 1) * ROW_VERTICAL_SPACING + 
 UI_TOP_MARGIN = (constants.SCREEN_HEIGHT - ROW_COUNT_HEIGHT) // 2
 
 
-
 # Helper function to draw a dotted line between two points
 def draw_dotted_line(surface, color, start, end, dot_radius=DOT_RADIUS, gap=DOT_GAP):
     dx = end[0] - start[0]
@@ -47,7 +46,6 @@ def draw_dotted_line(surface, color, start, end, dot_radius=DOT_RADIUS, gap=DOT_
         pygame.draw.circle(surface, color, dot_center, dot_radius)
 
 
-
 # Unified ClickableLevel class for both level circles and boss icons.
 class ClickableLevel:
     def __init__(self, center, **kwargs):
@@ -59,7 +57,6 @@ class ClickableLevel:
         self.image = kwargs.get("image", None)             # Optional image (for boss icons)
         self.current_scale = NORMAL_SCALE                  # For hover scaling effect
         self.is_visual_only = kwargs.get("is_visual_only", False)  # Visual-only icons are non-interactive
-
 
     # Determine if mouse is hovering over this level icon (only interactive ones respond)
     def is_hovered(self, mouse_pos):
@@ -83,8 +80,7 @@ class ClickableLevel:
         if active:
             # Draw a halo circle underneath by increasing the radius (e.g., by 10 pixels)
             halo_radius = r + 5
-            # Draw a filled halo circle in red; adjust color/alpha as needed
-            pygame.gfxdraw.filled_circle(surface, self.center[0], self.center[1], halo_radius, utils.color("FF4B3F"))
+            pygame.gfxdraw.filled_circle(surface, self.center[0], self.center[1], halo_radius, utils.color("FFB34B"))
 
         # Draw the level icon: if an image is provided, scale and blit it; otherwise, draw a filled circle
         if self.image is not None:
@@ -103,16 +99,12 @@ class ClickableLevel:
             surface.blit(text, text_rect)
 
 
-
 # Main class managing level selection screen and UI
-
-
-
 class LevelLoadingScreen:
     def __init__(self, screen, star_background):
         self.screen = screen                       # Display surface
         self.background = star_background          # Star background animation
-        self.clickable_levels = []                 # List of level icons and boss icons
+        self.clickable_levels = []                 # List of level icons
         checkpoint_manager = CheckpointManager()
         unlocked = checkpoint_manager.get_list_of_unlocked_checkpoints()  # Get unlocked levels
         unlock_threshold = len(unlocked)
@@ -120,7 +112,7 @@ class LevelLoadingScreen:
         self.selected_index = 0                    # Currently selected level index
         self.should_exit = False                   # Flag to exit the level selection screen
 
-        self.checkpoint_manager = CheckpointManager() # delete checkpoint when clicking delete button
+        self.checkpoint_manager = CheckpointManager()  # Delete checkpoint when clicking delete button
 
         # Load navigation sound if available
         try:
@@ -136,15 +128,22 @@ class LevelLoadingScreen:
             print("Error loading lock image:", e)
             self.lock_image = None
 
+        # Load boss image to be used as overlay on level 5
+        try:
+            self.boss_img = utils.loader_scale_image("assets/images/bosses/boss_1.png", BOSS_SIZE)
+        except Exception as e:
+            print("Error loading boss image:", e)
+            self.boss_img = None
+
         # Only interactive levels (non-visual-only) are selectable
         self.selectable_levels = [s for s in self.clickable_levels if not s.is_visual_only]
-        self.setup_buttons()                       # Create UI buttons
+        self.setup_buttons()  # Create UI buttons
 
     # Create UI buttons for controls and the Delete function
     def setup_buttons(self):
         control_font = pygame.font.Font(pygame.font.match_font("arial"), 15)
         self.buttons = {}
-        self.buttons['esc'] = HintButton("ESC", (10, 10), control_font,can_hover=True)
+        self.buttons['esc'] = HintButton("ESC", (10, 10), control_font, can_hover=True)
         control_y = constants.SCREEN_HEIGHT - 100
         self.buttons['enter'] = HintButton("Enter", (60, control_y - 30), control_font)
         self.buttons['space'] = HintButton("Space", (60, control_y + 5), control_font)
@@ -154,14 +153,12 @@ class LevelLoadingScreen:
         right_arrow_width = control_font.size(right_arrow_text)[0] + 15 * 2
         right_arrow_x = constants.SCREEN_WIDTH - right_arrow_width - 10
         self.buttons['right_arrow'] = HintButton(right_arrow_text, (right_arrow_x, control_y - 10), control_font)
-        # Create a fixed-size red Delete button (100x50) with white text
-
         self.buttons['delete'] = ColorfullyButton("Delete Saves", (constants.SCREEN_WIDTH - 140, 10), control_font,
-                                                   height=50,
+                                                  height=50,
                                                   prefix_image_path="assets/images/level_selection_screen/dustbin.png")
         self.control_font = control_font
 
-    # Setup level icons (circles) and boss icons using images if available.
+    # Setup level icons (circles) using images if available.
     def setup_levels(self, unlock_threshold):
         total_circles_width = NUM_CIRCLES * (2 * CIRCLE_RADIUS) + (NUM_CIRCLES - 1) * CIRCLE_GAP
         row_width = total_circles_width + BOSS_OFFSET + BOSS_SIZE
@@ -179,16 +176,7 @@ class LevelLoadingScreen:
                                    number=level_num,
                                    is_lock=locked)
                 )
-            # Create a boss icon for each row; treated as visual only
-            boss_x = start_x + total_circles_width + BOSS_OFFSET + BOSS_SIZE // 2
-            boss_y = row_y + BOSS_Y_SHIFT
-            boss_img = utils.loader_scale_image(f"assets/images/bosses/boss_{row+1}.png", BOSS_SIZE)
-            self.clickable_levels.append(
-                ClickableLevel((boss_x, boss_y),
-                               radius=BOSS_SIZE // 2,
-                               image=boss_img,
-                               is_visual_only=True)
-            )
+            # Boss icons removed
 
     # Handle mouse motion, clicks, and key presses.
     def handle_events(self, events):
@@ -250,34 +238,29 @@ class LevelLoadingScreen:
         self.screen.fill(constants.BLACK)
         t = pygame.time.get_ticks()
         self.background.update_and_draw(self.screen, t)
+
         if len(self.selectable_levels) >= 15:
             pygame.draw.line(self.screen, constants.WHITE, self.selectable_levels[0].center, self.selectable_levels[4].center, SOLID_LINE_THICKNESS)
             pygame.draw.line(self.screen, constants.WHITE, self.selectable_levels[4].center, self.selectable_levels[5].center, SOLID_LINE_THICKNESS)
             pygame.draw.line(self.screen, constants.WHITE, self.selectable_levels[5].center, self.selectable_levels[9].center, SOLID_LINE_THICKNESS)
             pygame.draw.line(self.screen, constants.WHITE, self.selectable_levels[9].center, self.selectable_levels[10].center, SOLID_LINE_THICKNESS)
             pygame.draw.line(self.screen, constants.WHITE, self.selectable_levels[10].center, self.selectable_levels[14].center, SOLID_LINE_THICKNESS)
-            total_circles_width = NUM_CIRCLES * (2 * CIRCLE_RADIUS) + (NUM_CIRCLES - 1) * CIRCLE_GAP
-            row_width = total_circles_width + BOSS_OFFSET + BOSS_SIZE
-            for row in range(NUM_ROWS):
-                row_y = UI_TOP_MARGIN + FIRST_ROW_Y_OFFSET + row * ROW_VERTICAL_SPACING
-                horizontal_offset = row * (2 * CIRCLE_RADIUS)
-                start_x = (self.screen.get_width() - row_width) // 2 + horizontal_offset
-                boss_x = start_x + total_circles_width + BOSS_OFFSET + BOSS_SIZE // 2
-                boss_center = (boss_x, row_y + BOSS_Y_SHIFT)
-                if row == 0:
-                    draw_dotted_line(self.screen, constants.WHITE, self.selectable_levels[4].center, boss_center)
-                elif row == 1:
-                    draw_dotted_line(self.screen, constants.WHITE, self.selectable_levels[9].center, boss_center)
-                elif row == 2:
-                    draw_dotted_line(self.screen, constants.WHITE, self.selectable_levels[14].center, boss_center)
+            # Dotted lines removed
+
         mouse_pos = pygame.mouse.get_pos()
         for level in self.clickable_levels:
             active = level.is_hovered(mouse_pos) or (level in self.selectable_levels and level == self.selectable_levels[self.selected_index])
             level.draw(self.screen, active)
+            # For circle with number 5, overlay the boss image with an offset (x + 100, y - 100)
+            if level.number == 15 and self.boss_img is not None:
+                boss_rect = self.boss_img.get_rect()
+                boss_rect.topleft = (level.center[0] + 30, level.center[1] - 20)
+                self.screen.blit(self.boss_img, boss_rect)
             # Overlay lock image if level is locked and no image is provided
             if not level.is_visual_only and level.image is None and level.locked and self.lock_image is not None:
                 lock_rect = self.lock_image.get_rect(center=level.center)
                 self.screen.blit(self.lock_image, lock_rect)
+
         for btn in self.buttons.values():
             btn.draw(self.screen)
         control_y = constants.SCREEN_HEIGHT - 100

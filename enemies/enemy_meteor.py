@@ -6,18 +6,6 @@ from enemies.enemy import Enemy
 from config.loader import Loader
 
 
-# UTILITY FUNCTION TO LOAD WORDS FOR METEORS
-# def load_words():
-#     with open("meteor_names.txt", "r", encoding="utf-8") as file:
-#         words = [word for line in file for word in line.strip().split()]
-#         random.shuffle(words)  # Shuffle the list of words
-#         return words
-# def load_words():
-#     txt_path = utils.resource_path("meteor_names.txt")
-#     with open(txt_path, "r", encoding="utf-8") as file:
-#         words = [word for line in file for word in line.strip().split()]
-#     random.shuffle(words)
-#     return words
 def load_words():
     txt_path = Loader.resource_path("config/meteor_names.txt")
     with open(txt_path, "r", encoding="utf-8") as file:
@@ -31,8 +19,10 @@ class EnemyMeteor(Enemy):
     WORD_LIST = load_words()  # Global word list for all EnemyMeteor instances
     word_index = 0  # Shared index to iterate through WORD_LIST
 
-    def __init__(self, player):
+    def __init__(self, player, target_player=False):
         super().__init__(player)  # Call the base class constructor
+
+        self.is_target_player = target_player
 
         # Set a random speed for the meteor
         self.speed = random.uniform(1.5, 3.5)
@@ -73,20 +63,58 @@ class EnemyMeteor(Enemy):
         self.dy = math.cos(radians) * self.speed
 
 
+    # this move follow the player
+    # def move(self, game_over):
+    #     if game_over:
+    #         self.rect.y += self.speed
+    #         return
+    #
+    #     self.move_handle_pushback()  # Apply any pushback
+    #
+    #     if self.is_target_player:
+    #         # Recalculate direction toward the player every frame.
+    #         player_x, player_y = self.player.rect.center
+    #         meteor_x, meteor_y = self.rect.center
+    #         angle = math.atan2(player_y - meteor_y, player_x - meteor_x)
+    #         self.dx = math.cos(angle) * self.speed
+    #         self.dy = math.sin(angle) * self.speed
+    #
+    #     self.rect.x += self.dx  # Update horizontal position
+    #     self.rect.y += self.dy  # Update vertical position
+    #     self.rotate += self.rotate_direction  # Update rotation for visual effect
 
-
-    # Override move methods
     def move(self, game_over):
-
-
         if game_over:
-            self.rect.y += self.speed   # Keep moving downward
+            self.rect.y += self.speed  # Continue moving downwards if the game is over
             return
 
-        self.move_handle_pushback()  # Apply pushback if any
-        self.rect.x += self.dx  # Move meteor along the x-axis
-        self.rect.y += self.dy  # Move meteor along the y-axis
-        self.rotate += self.rotate_direction   # Increase rotation angle for visual effect
+        self.move_handle_pushback()  # Apply any pushback if needed
+
+        # While the meteor is above y=100, update its direction toward the player's current position.
+        if self.rect.y < 50:
+            player_x, player_y = self.player.rect.center
+            meteor_x, meteor_y = self.rect.center
+            angle = math.atan2(player_y - meteor_y, player_x - meteor_x)
+            self.dx = math.cos(angle) * self.speed
+            self.dy = math.sin(angle) * self.speed
+
+        # Continue moving along the current direction.
+        self.rect.x += self.dx
+        self.rect.y += self.dy
+        self.rotate += self.rotate_direction  # Update rotation for visual effect
+
+    # Override move methods
+    # def move(self, game_over):
+    #
+    #
+    #     if game_over:
+    #         self.rect.y += self.speed   # Keep moving downward
+    #         return
+    #
+    #     self.move_handle_pushback()  # Apply pushback if any
+    #     self.rect.x += self.dx  # Move meteor along the x-axis
+    #     self.rect.y += self.dy  # Move meteor along the y-axis
+    #     self.rotate += self.rotate_direction   # Increase rotation angle for visual effect
 
     # Override draw methods
     def draw(self, screen):

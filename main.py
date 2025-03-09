@@ -111,7 +111,7 @@ def main(star_background=None):
     #         # If "Main Menu" was selected during gameplay, return to the start screen.
     #         main()
 
-    elif chosen_option == "Load Game":
+    elif chosen_option == "Start Game":
         load_game_screen = LevelLoadingScreen(screen,star_background)  # LevelSelectionScreen(screen)
         running_load = True
 
@@ -155,7 +155,7 @@ def main(star_background=None):
         # After closing the load screen, return to the start screen
         main(star_background)
 
-    elif chosen_option == "Settings":
+    elif chosen_option == "Layout":
 
         settings_menu = SettingsMenu(screen)
         running_settings = True
@@ -178,7 +178,7 @@ def main(star_background=None):
 
 
 
-    elif chosen_option == "Layout":
+    elif chosen_option == "About":
         print("Layout option selected.")
 
         layout_menu = LayoutMenu(screen)

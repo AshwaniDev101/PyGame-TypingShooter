@@ -23,8 +23,8 @@ class Enemy:
 
 
         # Core attributes
-        # self.image = pygame.image.load("assets/images/alien_ships/alien_ship_0.png").convert_alpha()
-        self.image = Loader.load_image("assets/images/alien_ships/alien_ship_0.png")
+        # self.image = pygame.image.load("assets/images/enemy_ships/alien_ship_0.png").convert_alpha()
+        self.image = Loader.load_image("assets/images/enemy_ships/enemyRed1.png")
         self.rect = self.image.get_rect(center=(200, 200))
         # self.font = pygame.font.Font("assets/fonts/Righteous-Regular.ttf", 21)
         self.font = Loader.load_font("assets/fonts/Righteous-Regular.ttf", 21)

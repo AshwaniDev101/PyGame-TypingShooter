@@ -14,7 +14,8 @@ class CheckpointDivider(Enemy):
         self.checkpoint_manager = checkpoint_manager
         self.player = player
 
-        self.y = -50  # Initial Y position
+        self.word=""
+        self.y = -5  # Initial Y position
         self.checkpoint_text = f"Checkpoint"
         self.color = utils.color("ffffff")
         self.speed = 2  # Speed at which the line moves down
@@ -26,6 +27,9 @@ class CheckpointDivider(Enemy):
 
     def draw(self, screen):
         self.draw_dashed_line(screen,(0, self.y), (constants.SCREEN_WIDTH, self.y))
+
+    def draw_word(self, screen):
+        pass
 
     def draw_dashed_line(self, screen, start_pos, end_pos, dash_length=10):
         font = pygame.font.Font(None, 30)

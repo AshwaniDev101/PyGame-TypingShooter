@@ -85,10 +85,15 @@ class Player:
     def handle_event_continuously(self, event):
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
-                self.shield_health = 1
+                pass
+                # self.shield_health = 1
+
         elif event.type == pygame.KEYUP:
             if event.key == pygame.K_SPACE:
-                self.shield_health = 0
+                pass
+                # self.shield_health = 0
+
+
 
     # This method now only updates the gun's angle, not the player image.
     def gun_rotate_toward(self, enemy):

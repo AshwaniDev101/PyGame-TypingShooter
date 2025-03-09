@@ -150,7 +150,7 @@ class Game:
 
                     # Spawn an enemy based on its type
                     if jsonObject[jcon.ENEMY_TYPE] == jcon.EnemyType.ENEMY_METEOR:
-                        self.enemy_list.append(EnemyMeteor(self.player))
+                        self.enemy_list.append(EnemyMeteor(self.player,target_player=True))
 
                     elif jsonObject[jcon.ENEMY_TYPE] == jcon.EnemyType.ENEMY_PROXIMITY_MINE:
                         self.enemy_list.append(EnemyProximityMines(self.player))
@@ -173,11 +173,17 @@ class Game:
 
                 elif key == "message":
                     # Display a message on the game window
-                    self.game_window.start_message(jsonObject[jcon.SENDER], jsonObject[jcon.TEXT_MESSAGE])
-                    print(f"{jsonObject[jcon.SENDER]}: {jsonObject[jcon.TEXT_MESSAGE]}")
+                    sender = jsonObject[jcon.SENDER]
+                    message = jsonObject[jcon.TEXT_MESSAGE]
+
+                    if sender == "alien":
+                        self.game_window.show_incoming_message(message)
+                    elif sender == "player":
+                        self.game_window.show_outgoing_message(message)
+
+                    print(f"{sender} : {message}")
 
                 elif key == "trigger":
-
                     # Set the state for triggers (e.g., meteor shower)
                     self.meteor_shower = jsonObject[jcon.METEOR_SHOWER]
                     print(f"Trigger {jsonObject}")
@@ -379,7 +385,7 @@ class Game:
                 clicked_option = self.menu.handle_mouse_click(event.pos)
                 if clicked_option == "resume":
                     self.paused = False
-                elif clicked_option == "restart":
+                elif clicked_option == "Load checkpoint":
                     self.reset_game()
                 elif clicked_option == "main_menu":
                     return "main_menu"  # Return the flag to signal a return to the start screen
@@ -417,7 +423,7 @@ class Game:
                         self.is_boss_active = False
 
                 # Shoot() function specific to Enemy Gunships
-                # if isinstance(enemy, EnemyGunship):  # Ensure only gunships shoot
+                # if isinstance(enemy, EnemyGunship):  # Ensure only battleships shoot
                 #     enemy.shoot()
 
                 # # If the enemy is a battleship, update its shells too.
