@@ -2,7 +2,7 @@
 
 🔤 **A Fast-Paced Typing Shooter Game – Set in Space**  
 
-Typing Shooter: Space Adventure is an **action-packed space combat game** where you must **type to shoot bullets, destroy meteors, and battle a persistent enemy who taunts you throughout the campaign**. Test your typing speed and accuracy while fighting through thrilling space battles!
+Space Adventure is an **action-packed space combat game** where you must **type to shoot bullets, destroy meteors, and battle a persistent enemy who taunts you throughout the campaign**. Test your typing speed and accuracy while fighting through thrilling space battles!
 
 <div align="center">  
     <img src="screenshots/screenshot1.jpg" width="30%" alt="Gameplay Screenshot">  
