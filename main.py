@@ -1,3 +1,7 @@
+
+
+# Make .exe using "auto-py-to-exe"
+
 import ctypes
 import pygame
 

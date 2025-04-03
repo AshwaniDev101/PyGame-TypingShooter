@@ -1,7 +1,6 @@
 {"events": [
 
-
-    {"delay": 5000, "action": {"checkpoint": {"id": "1"}}},
+    {"delay": 3000, "action": {"checkpoint": {"id": "1"}}},
     {"delay": 10000, "action": {"spawn": {"enemy_type": "enemy_meteor"}}},
     {"delay": 5000, "action": {"spawn": {"enemy_type": "enemy_meteor"}}},
     {"delay": 5000, "action": {"spawn": {"enemy_type": "enemy_meteor"}}},
@@ -9,15 +8,7 @@
 
     {"delay": 6000, "action": {"message": {"sender": "alien", "text_message": "Alien: Halt, human! You are not welcome here!"}}},
     {"delay": 6000, "action": {"message": {"sender": "player", "text_message": "Pilot: ..."}}},
-    {"delay": 6000, "action": {"message": {"sender": "alien", "text_message": "Alien: Hey! Can you hear me? I said stop!"}}},
-    {"delay": 4000, "action": {"message": {"sender": "player", "text_message": "Pilot: ..."}}},
-    {"delay": 6000, "action": {"message": {"sender": "alien", "text_message": "Alien: Ugh, is this communicator even working?"}}},
-    {"delay": 6000, "action": {"message": {"sender": "alien", "text_message": "Alien: Wait... Oh, I know you can hear me."}}},
-    {"delay": 6000, "action": {"message": {"sender": "alien", "text_message": "Alien: Loud and clear, in fact."}}},
-    {"delay": 6000, "action": {"message": {"sender": "alien", "text_message": "Alien: So listen up—I’ll only say this once. Surrender now!"}}},
-    {"delay": 4000, "action": {"message": {"sender": "player", "text_message": "Pilot: Keep dreaming."}}},
-    {"delay": 6000, "action": {"message": {"sender": "alien", "text_message": "Alien: Ah, so you can talk after all. Heh."}}},
-    {"delay": 6000, "action": {"message": {"sender": "alien", "text_message": "Alien: Let's see you dodge this!"}}},
+    {"delay": 6000, "action": {"message": {"sender": "alien", "text_message": "Alien: I know you can hear me."}}},
 
     {"delay": 7000, "action": {"spawn": {"enemy_type": "enemy_meteor"}}},
     {"delay": 5000, "action": {"spawn": {"enemy_type": "enemy_meteor"}}},
@@ -29,8 +20,6 @@
     {"delay": 7000, "action": {"spawn": {"enemy_type": "enemy_meteor"}}},
     {"delay": 5000, "action": {"spawn": {"enemy_type": "enemy_meteor"}}},
     {"delay": 5000, "action": {"spawn": {"enemy_type": "enemy_meteor"}}},
-
-
 
 
 
@@ -98,9 +87,7 @@
 
 
 
-
-
-{"delay": 10000, "action": {"checkpoint": {"id": "5"}}},
+    {"delay": 10000, "action": {"checkpoint": {"id": "5"}}},
     {"delay": 10000, "action": {"message": {"sender": "alien", "text_message": "Alien: EHHHH!!!"}}},
     {"delay": 5000, "action": {"message": {"sender": "alien", "text_message": "I... I can't believe you made it to Checkpoint 5, Human! How!? You were supposed to be a smoldering crater by now!"}}},
     {"delay": 5000, "action": {"message": {"sender": "player", "text_message": "Pilot: Yeah, well, maybe your meteors should try aiming next time."}}},
@@ -155,38 +142,38 @@
     {"delay": 2000, "action": {"spawn": {"enemy_type": "enemy_gunship"}}},
     {"delay": 1000, "action": {"trigger": {"meteor_shower": false}}},
 
-  {"delay": 7000,"action": {"trigger": {"meteor_shower": true}}},
-  {"delay": 6000,"action": {"spawn": {"enemy_type": "enemy_meteor"}}},
-  {"delay": 6000,"action": {"spawn": {"enemy_type": "enemy_meteor"}}},
-  {"delay": 7000,"action": {"spawn": {"enemy_type": "enemy_proximity_mine"}}},
-  {"delay": 7000,"action": {"spawn": {"enemy_type": "enemy_proximity_mine"}}},
-  {"delay": 6000,"action": {"spawn": {"enemy_type": "enemy_suicide_drone"}}},
-  {"delay": 3000,"action": {"spawn": {"enemy_type": "enemy_suicide_drone"}}},
-  {"delay": 2000,"action": {"spawn": {"enemy_type": "enemy_gunship"}}},
-  {"delay": 1000,"action": {"trigger": {"meteor_shower": false}}},
+    {"delay": 7000,"action": {"trigger": {"meteor_shower": true}}},
+    {"delay": 6000,"action": {"spawn": {"enemy_type": "enemy_meteor"}}},
+    {"delay": 6000,"action": {"spawn": {"enemy_type": "enemy_meteor"}}},
+    {"delay": 7000,"action": {"spawn": {"enemy_type": "enemy_proximity_mine"}}},
+    {"delay": 7000,"action": {"spawn": {"enemy_type": "enemy_proximity_mine"}}},
+    {"delay": 6000,"action": {"spawn": {"enemy_type": "enemy_suicide_drone"}}},
+    {"delay": 3000,"action": {"spawn": {"enemy_type": "enemy_suicide_drone"}}},
+    {"delay": 2000,"action": {"spawn": {"enemy_type": "enemy_gunship"}}},
+    {"delay": 1000,"action": {"trigger": {"meteor_shower": false}}},
 
-  {"delay": 10000,"action": {"checkpoint": {"id": "7"}}},
-  {"delay": 10000,"action": {"message": {"sender": "player","text_message": "Pilot: Ah. Finally sending out the big boys, huh?"}}},
-  {"delay": 6000,"action": {"message": {"sender": "alien","text_message": "Alien: That's a Doom-Bringer-Class Gunship—heavily armed, enough to level a city."}}},
-  {"delay": 10000,"action": {"message": {"sender": "player","text_message": "Pilot: And yet... you need it just for me. That’s kinda flattering."}}},
-  {"delay": 6000,"action": {"message": {"sender": "alien","text_message": "Alien: RRRAAAHHH! SHUT UP AND DIE ALREADY!!"}}},
+    {"delay": 10000,"action": {"checkpoint": {"id": "7"}}},
+    {"delay": 10000,"action": {"message": {"sender": "player","text_message": "Pilot: Ah. Finally sending out the big boys, huh?"}}},
+    {"delay": 6000,"action": {"message": {"sender": "alien","text_message": "Alien: That's a Doom-Bringer-Class Gunship—heavily armed, enough to level a city."}}},
+    {"delay": 10000,"action": {"message": {"sender": "player","text_message": "Pilot: And yet... you need it just for me. That’s kinda flattering."}}},
+    {"delay": 6000,"action": {"message": {"sender": "alien","text_message": "Alien: RRRAAAHHH! SHUT UP AND DIE ALREADY!!"}}},
 
-  {"delay": 7000,"action": {"trigger": {"meteor_shower": true}}},
-  {"delay": 6000,"action": {"spawn": {"enemy_type": "enemy_meteor"}}},
-  {"delay": 6000,"action": {"spawn": {"enemy_type": "enemy_meteor"}}},
-  {"delay": 6000,"action": {"spawn": {"enemy_type": "enemy_suicide_drone"}}},
-  {"delay": 3000,"action": {"spawn": {"enemy_type": "enemy_suicide_drone"}}},
-  {"delay": 7000,"action": {"spawn": {"enemy_type": "enemy_proximity_mine"}}},
-  {"delay": 7000,"action": {"spawn": {"enemy_type": "enemy_proximity_mine"}}},
-  {"delay": 7000,"action": {"spawn": {"enemy_type": "enemy_proximity_mine"}}},
-  {"delay": 7000,"action": {"spawn": {"enemy_type": "enemy_proximity_mine"}}},
-  {"delay": 6000,"action": {"spawn": {"enemy_type": "enemy_suicide_drone"}}},
-  {"delay": 3000,"action": {"spawn": {"enemy_type": "enemy_suicide_drone"}}},
-  {"delay": 2000,"action": {"spawn": {"enemy_type": "enemy_gunship"}}},
-  {"delay": 6000,"action": {"spawn": {"enemy_type": "enemy_suicide_drone"}}},
-  {"delay": 3000,"action": {"spawn": {"enemy_type": "enemy_suicide_drone"}}},
-  {"delay": 2000,"action": {"spawn": {"enemy_type": "enemy_gunship"}}},
-  {"delay": 1000,"action": {"trigger": {"meteor_shower": false}}},
+    {"delay": 7000,"action": {"trigger": {"meteor_shower": true}}},
+    {"delay": 6000,"action": {"spawn": {"enemy_type": "enemy_meteor"}}},
+    {"delay": 6000,"action": {"spawn": {"enemy_type": "enemy_meteor"}}},
+    {"delay": 6000,"action": {"spawn": {"enemy_type": "enemy_suicide_drone"}}},
+    {"delay": 3000,"action": {"spawn": {"enemy_type": "enemy_suicide_drone"}}},
+    {"delay": 7000,"action": {"spawn": {"enemy_type": "enemy_proximity_mine"}}},
+    {"delay": 7000,"action": {"spawn": {"enemy_type": "enemy_proximity_mine"}}},
+    {"delay": 7000,"action": {"spawn": {"enemy_type": "enemy_proximity_mine"}}},
+    {"delay": 7000,"action": {"spawn": {"enemy_type": "enemy_proximity_mine"}}},
+    {"delay": 6000,"action": {"spawn": {"enemy_type": "enemy_suicide_drone"}}},
+    {"delay": 3000,"action": {"spawn": {"enemy_type": "enemy_suicide_drone"}}},
+    {"delay": 2000,"action": {"spawn": {"enemy_type": "enemy_gunship"}}},
+    {"delay": 6000,"action": {"spawn": {"enemy_type": "enemy_suicide_drone"}}},
+    {"delay": 3000,"action": {"spawn": {"enemy_type": "enemy_suicide_drone"}}},
+    {"delay": 2000,"action": {"spawn": {"enemy_type": "enemy_gunship"}}},
+    {"delay": 1000,"action": {"trigger": {"meteor_shower": false}}},
 
 
 
@@ -243,46 +230,43 @@
 
 
 
+    {"delay": 10000, "action": {"checkpoint": {"id": "10"}}},
+    {"delay": 10000, "action": {"message": {"sender": "alien", "text_message": "Alien: THIS IS IT, HUMAN! NO MORE ESCAPING!"}}},
+    {"delay": 5000, "action": {"message": {"sender": "player", "text_message": "Pilot: Finally. I was getting bored."}}},
 
+    {"delay": 7000,"action": {"trigger": {"meteor_shower": true}}},
+    {"delay": 8000, "action": {"spawn": {"enemy_type": "enemy_gunship"}}},
+    {"delay": 5000, "action": {"spawn": {"enemy_type": "enemy_suicide_drone"}}},
+    {"delay": 7000, "action": {"spawn": {"enemy_type": "enemy_proximity_mine"}}},
+    {"delay": 5000, "action": {"spawn": {"enemy_type": "enemy_meteor"}}},
+    {"delay": 5000, "action": {"spawn": {"enemy_type": "enemy_meteor"}}},
+    {"delay": 7000, "action": {"spawn": {"enemy_type": "enemy_gunship"}}},
 
+    {"delay": 10000, "action": {"message": {"sender": "alien", "text_message": "Alien: Prepare to be ERASED FROM EXISTENCE!"}}},
+    {"delay": 5000, "action": {"message": {"sender": "player", "text_message": "Pilot: Bring it on, lizard breath."}}},
 
-  {"delay": 10000, "action": {"checkpoint": {"id": "10"}}},
-  {"delay": 10000, "action": {"message": {"sender": "alien", "text_message": "Alien: THIS IS IT, HUMAN! NO MORE ESCAPING!"}}},
-  {"delay": 5000, "action": {"message": {"sender": "player", "text_message": "Pilot: Finally. I was getting bored."}}},
+    {"delay": 6000, "action": {"spawn": {"enemy_type": "enemy_meteor"}}},
+    {"delay": 4000, "action": {"spawn": {"enemy_type": "enemy_meteor"}}},
+    {"delay": 6000, "action": {"spawn": {"enemy_type": "enemy_gunship"}}},
+    {"delay": 4000, "action": {"spawn": {"enemy_type": "enemy_suicide_drone"}}},
+    {"delay": 4000, "action": {"spawn": {"enemy_type": "enemy_suicide_drone"}}},
+    {"delay": 4000, "action": {"spawn": {"enemy_type": "enemy_proximity_mine"}}},
+    {"delay": 4000, "action": {"spawn": {"enemy_type": "enemy_proximity_mine"}}},
+    {"delay": 6000, "action": {"spawn": {"enemy_type": "enemy_meteor"}}},
+    {"delay": 4000, "action": {"spawn": {"enemy_type": "enemy_meteor"}}},
+    {"delay": 4000, "action": {"spawn": {"enemy_type": "enemy_proximity_mine"}}},
+    {"delay": 4000, "action": {"spawn": {"enemy_type": "enemy_proximity_mine"}}},
+    {"delay": 4000, "action": {"spawn": {"enemy_type": "enemy_suicide_drone"}}},
+    {"delay": 4000, "action": {"spawn": {"enemy_type": "enemy_suicide_drone"}}},
+    {"delay": 4000, "action": {"spawn": {"enemy_type": "enemy_proximity_mine"}}},
+    {"delay": 4000, "action": {"spawn": {"enemy_type": "enemy_proximity_mine"}}},
+    {"delay": 4000, "action": {"spawn": {"enemy_type": "enemy_proximity_mine"}}},
+    {"delay": 7000, "action": {"spawn": {"enemy_type": "enemy_battleship"}}},
 
-  {"delay": 7000,"action": {"trigger": {"meteor_shower": true}}},
-  {"delay": 8000, "action": {"spawn": {"enemy_type": "enemy_gunship"}}},
-  {"delay": 5000, "action": {"spawn": {"enemy_type": "enemy_suicide_drone"}}},
-  {"delay": 7000, "action": {"spawn": {"enemy_type": "enemy_proximity_mine"}}},
-  {"delay": 5000, "action": {"spawn": {"enemy_type": "enemy_meteor"}}},
-  {"delay": 5000, "action": {"spawn": {"enemy_type": "enemy_meteor"}}},
-  {"delay": 7000, "action": {"spawn": {"enemy_type": "enemy_gunship"}}},
+    {"delay": 5000,"action": {"trigger": {"meteor_shower": false}}},
 
-  {"delay": 10000, "action": {"message": {"sender": "alien", "text_message": "Alien: Prepare to be ERASED FROM EXISTENCE!"}}},
-  {"delay": 5000, "action": {"message": {"sender": "player", "text_message": "Pilot: Bring it on, lizard breath."}}},
-
-  {"delay": 6000, "action": {"spawn": {"enemy_type": "enemy_meteor"}}},
-  {"delay": 4000, "action": {"spawn": {"enemy_type": "enemy_meteor"}}},
-  {"delay": 6000, "action": {"spawn": {"enemy_type": "enemy_gunship"}}},
-  {"delay": 4000, "action": {"spawn": {"enemy_type": "enemy_suicide_drone"}}},
-  {"delay": 4000, "action": {"spawn": {"enemy_type": "enemy_suicide_drone"}}},
-  {"delay": 4000, "action": {"spawn": {"enemy_type": "enemy_proximity_mine"}}},
-  {"delay": 4000, "action": {"spawn": {"enemy_type": "enemy_proximity_mine"}}},
-  {"delay": 6000, "action": {"spawn": {"enemy_type": "enemy_meteor"}}},
-  {"delay": 4000, "action": {"spawn": {"enemy_type": "enemy_meteor"}}},
-  {"delay": 4000, "action": {"spawn": {"enemy_type": "enemy_proximity_mine"}}},
-  {"delay": 4000, "action": {"spawn": {"enemy_type": "enemy_proximity_mine"}}},
-  {"delay": 4000, "action": {"spawn": {"enemy_type": "enemy_suicide_drone"}}},
-  {"delay": 4000, "action": {"spawn": {"enemy_type": "enemy_suicide_drone"}}},
-  {"delay": 4000, "action": {"spawn": {"enemy_type": "enemy_proximity_mine"}}},
-  {"delay": 4000, "action": {"spawn": {"enemy_type": "enemy_proximity_mine"}}},
-  {"delay": 4000, "action": {"spawn": {"enemy_type": "enemy_proximity_mine"}}},
-  {"delay": 7000, "action": {"spawn": {"enemy_type": "enemy_battleship"}}},
-
-  {"delay": 5000,"action": {"trigger": {"meteor_shower": false}}},
-
-  {"delay": 5000, "action": {"message": {"sender": "alien", "text_message": "Alien: Thanks for playing the Game. If you like it Please vote!"}}},
-  {"delay": 5000, "action": {"message": {"sender": "alien", "text_message": "Don't forget to share your feedback."}}},
-  {"delay": 3000, "action": {"message": {"sender": "player", "text_message": "Pilot: bye. . . "}}},
-  {"delay": 8000, "action": {"message": {"sender": "alien", "text_message": "==================== Game Over =================="}}}
+    {"delay": 5000, "action": {"message": {"sender": "alien", "text_message": "Alien: Thanks for playing the Game. If you like it Please vote!"}}},
+    {"delay": 5000, "action": {"message": {"sender": "alien", "text_message": "Don't forget to share your feedback."}}},
+    {"delay": 3000, "action": {"message": {"sender": "player", "text_message": "Pilot: bye. . . "}}},
+    {"delay": 8000, "action": {"message": {"sender": "alien", "text_message": "==================== Game Over =================="}}}
 ]}
