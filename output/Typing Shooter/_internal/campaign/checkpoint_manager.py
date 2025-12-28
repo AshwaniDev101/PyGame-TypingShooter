@@ -7,7 +7,7 @@ from config.loader import Loader
 
 class CheckpointManager:
     # Manages game checkpoints by saving, loading, and listing them in a JSON file.
-    def __init__(self, file_name="campaign/checkpoints.json"):
+    def __init__(self, file_name="campaign_manager/checkpoints.json"):
         # Store both the relative filename and its absolute path.
         self.file_name = file_name
         self.file_path = Loader.resource_path(file_name)

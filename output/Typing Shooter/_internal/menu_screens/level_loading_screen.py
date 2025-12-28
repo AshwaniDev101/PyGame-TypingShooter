@@ -1,6 +1,6 @@
 import pygame
 import pygame.gfxdraw
-from campaign.checkpoint_manager import CheckpointManager
+from campaign_manager.checkpoint_manager import CheckpointManager
 from config import utils
 from config import constants
 from config.loader import Loader

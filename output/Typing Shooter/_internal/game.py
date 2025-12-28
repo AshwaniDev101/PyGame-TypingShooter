@@ -58,7 +58,7 @@ class Game:
         self.enemy_selection_mode = False # if True player needs to select the enemy first before shooting
         self.selected_enemy = None  # Currently focused on an enemy
 
-        self.is_boss_active = False  # Temp way to tigger the end of a Boss fight so that a campaign can continue
+        self.is_boss_active = False  # Temp way to tigger the end of a Boss fight so that a campaign_manager can continue
 
         # Campaign Management
         self.checkpoint_manager = CheckpointManager()
@@ -103,9 +103,9 @@ class Game:
         self.meteor_shower = False
         self.selected_enemy = None
 
-        self.is_boss_active = False  # Temp way to tigger the end of a Boss fight so that a campaign can continue
+        self.is_boss_active = False  # Temp way to tigger the end of a Boss fight so that a campaign_manager can continue
 
-        # Reset campaign events so they start from the beginning
+        # Reset campaign_manager events so they start from the beginning
         # self.triggered_events.clear()
 
         # the get number of the checkpoints
@@ -220,7 +220,7 @@ class Game:
 
 
     def process_json_campaign(self):
-        # Don't process campaign events while paused
+        # Don't process campaign_manager events while paused
         if self.paused:
             return
 
@@ -342,7 +342,7 @@ class Game:
 
                 # it's not working because I'm check is enemy defeated only when im typing which won't always work
                 # This way of enemy death detection does not work
-                # This is a temp way to handle boss fight it help with pausing the campaign events until boss defeated
+                # This is a temp way to handle boss fight it help with pausing the campaign_manager events until boss defeated
                 # if isinstance(enemy, (EnemyGunship, EnemyBattleship)) :
                 #
                 #     if enemy.is_defeated():
@@ -423,7 +423,7 @@ class Game:
                 enemy.draw(self.screen)
 
 
-                # Checking for a boss enemy and resuming the campaign
+                # Checking for a boss enemy and resuming the campaign_manager
                 if isinstance(enemy, (EnemyGunship, EnemyBattleship)):
                     if enemy.is_defeated():
                         self.is_boss_active = False
