@@ -1,6 +1,14 @@
 
 
-# Make .exe using "auto-py-to-exe"
+# To build the .exe:
+# 1. Open a terminal / command prompt
+# 2. Run:
+#    auto-py-to-exe
+#
+# To build the .exe using the existing config file:
+#    auto-py-to-exe --config "ashwanis_game_output_config_file.json"
+
+
 
 import ctypes
 import pygame

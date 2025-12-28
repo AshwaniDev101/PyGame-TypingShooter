@@ -3,7 +3,7 @@ import sys
 
 import pygame
 
-from campaign.checkpoint_manager import CheckpointManager
+from campaign_manager.checkpoint_manager import CheckpointManager
 from config import constants, game_settings as settings
 from enemies.checkpoint_divider import CheckpointDivider
 from enemies.enemy import Enemy
@@ -19,7 +19,7 @@ from player import Player
 from shooting.bullet_manager import BulletManager
 from menu_screens.in_game_menu import InGameMenu
 from game_window import GameWindow
-from campaign import jcon
+from campaign_manager import jcon
 
 
 # ----------------- Game Class (Main Game Logic) -----------------
@@ -114,7 +114,8 @@ class Game:
 
 
     def load_game_campaign(self,checkpoint_level):
-        data = Loader.load_json("campaign/game_event.json")
+        # data = Loader.load_json("campaign_manager/campaigns/game_jam_campaign.json")
+        data = Loader.load_json("campaign_manager/campaigns/fastpace_campaign.json")
         self.game_campaign_event_list = data["events"]  # Extract the list of events from the JSON data
         # self.next_campaign_event_index = start_from_index  # Reset the event index from 0
 

@@ -4,8 +4,89 @@
         "states": {
             "player_x": 551,
             "player_health": 3,
+            "player_ammo": 108
+        },
+        "timestamp": "2025-12-28T13:10:30.379691"
+    },
+    {
+        "id": 2,
+        "states": {
+            "player_x": 575,
+            "player_health": 2,
+            "player_ammo": 135
+        },
+        "timestamp": "2025-12-28T13:10:55.707566"
+    },
+    {
+        "id": 3,
+        "states": {
+            "player_x": 575,
+            "player_health": 1,
+            "player_ammo": 128
+        },
+        "timestamp": "2025-12-28T13:11:10.768332"
+    },
+    {
+        "id": 4,
+        "states": {
+            "player_x": 575,
+            "player_health": 1,
+            "player_ammo": 174
+        },
+        "timestamp": "2025-12-28T13:11:36.894031"
+    },
+    {
+        "id": 5,
+        "states": {
+            "player_x": 575,
+            "player_health": 1,
+            "player_ammo": 160
+        },
+        "timestamp": "2025-12-28T13:11:52.643559"
+    },
+    {
+        "id": 6,
+        "states": {
+            "player_x": 551,
+            "player_health": 3,
             "player_ammo": 100
         },
-        "timestamp": "2025-04-04T00:48:12.605663"
+        "timestamp": "2025-12-28T13:12:51.969032"
+    },
+    {
+        "id": 7,
+        "states": {
+            "player_x": 507,
+            "player_health": 2,
+            "player_ammo": 73
+        },
+        "timestamp": "2025-12-28T13:13:51.142734"
+    },
+    {
+        "id": 8,
+        "states": {
+            "player_x": 551,
+            "player_health": 3,
+            "player_ammo": 100
+        },
+        "timestamp": "2025-12-28T13:16:39.831422"
+    },
+    {
+        "id": 9,
+        "states": {
+            "player_x": 507,
+            "player_health": 1,
+            "player_ammo": 77
+        },
+        "timestamp": "2025-12-28T13:17:28.779245"
+    },
+    {
+        "id": 10,
+        "states": {
+            "player_x": 551,
+            "player_health": 3,
+            "player_ammo": 100
+        },
+        "timestamp": "2025-12-28T13:18:24.749181"
     }
 ]
