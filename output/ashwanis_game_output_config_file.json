@@ -63,10 +63,6 @@
   },
   {
    "optionDest": "datas",
-   "value": "S:/Data/Python Personal Projects/PyGame-TypingShooter/campaign_manager;campaign/"
-  },
-  {
-   "optionDest": "datas",
    "value": "S:/Data/Python Personal Projects/PyGame-TypingShooter/config;config/"
   },
   {
@@ -96,6 +92,10 @@
   {
    "optionDest": "datas",
    "value": "S:/Data/Python Personal Projects/PyGame-TypingShooter/player.py;."
+  },
+  {
+   "optionDest": "datas",
+   "value": "S:/Data/Python Personal Projects/PyGame-TypingShooter/campaign_manager;campaign_manager/"
   }
  ],
  "nonPyinstallerOptions": {

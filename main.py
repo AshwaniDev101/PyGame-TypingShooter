@@ -1,41 +1,32 @@
-
-
 # To build the .exe:
 # 1. Open a terminal / command prompt
-# 2. Run:
-#    auto-py-to-exe
+# 2. Run: auto-py-to-exe
 #
 # To build the .exe using the existing config file:
-#    auto-py-to-exe --config "ashwanis_game_output_config_file.json"
-
-
+# auto-py-to-exe --config "output/ashwanis_game_output_config_file.json"
 
 import ctypes
 import pygame
-
 from config import constants
+from config.loader import Loader  # We'll use this to load the icon
 from game import Game
-from menu_screens.layout_menu_screen import LayoutMenu
+from menu_screens.about_menu_screen import AboutMenuScreen
 from menu_screens.level_loading_screen import LevelLoadingScreen
-from menu_screens.setting_menu_screen import SettingsMenu
+from menu_screens.layout_menu_screen import LayoutMenuScreen
 from menu_screens.start_menu_screen import StartScreen
 from effects.stars import StarBackground
 
-# Set DPI awareness (Windows only)
+
+# Set DPI awareness (Windows only) - makes window scaling crisp on high-DPI screens
 try:
     ctypes.windll.user32.SetProcessDPIAware()
-except Exception as e:
-    print("Could not set DPI Awareness:", e)
+except Exception:
+    pass  # Not on Windows or failed - no problem
 
 
 def get_monitor_height_width():
-    """
-    Returns a scaled width and height based on the monitor's resolution.
-    """
-    # Ensure Pygame is initialized.
-    if not pygame.get_init():
-        pygame.init()
-
+    """ Returns a scaled width and height based on the monitor's resolution. """
+    pygame.init()  # Safe to call multiple times
     info = pygame.display.Info()
     full_width = info.current_w
     full_height = info.current_h
@@ -53,146 +44,95 @@ def get_monitor_height_width():
 
 
 def run_start_screen(screen, star_background, clock):
-    """
-    Runs the start screen until the user selects an option.
-    Returns the chosen option.
-    """
+    """ Runs the start menu and returns the selected option. """
     start_screen = StartScreen(screen, star_background)
-    chosen_option = None
-
-    while not chosen_option:
+    while True:
         events = pygame.event.get()
         chosen_option = start_screen.handle_events(events)
+        if chosen_option:
+            return chosen_option
         start_screen.draw()
         clock.tick(60)
 
-    return chosen_option
-
 
 def run_level_loading_screen(screen, star_background, clock):
-    """
-    Runs the level loading screen and returns the result.
-    The result can be "Escape", "Exit", or a dictionary with the selected level.
-    """
-    load_game_screen = LevelLoadingScreen(screen, star_background)
-    running_load = True
-    result = None
-
-    while running_load:
+    """ Runs level selection. Returns level number or None/"Exit". """
+    level_screen = LevelLoadingScreen(screen, star_background)
+    while True:
         events = pygame.event.get()
-        for event in events:
-            if event.type == pygame.QUIT:
-                running_load = False
-                result = "Exit"
-        result = load_game_screen.handle_events(events)
-
+        result = level_screen.handle_events(events)
         if result == "Escape":
-            running_load = False
-        elif isinstance(result, dict) and "Level-Selected" in result:
-            level_selected = result["Level-Selected"]
-            running_load = False
-            return level_selected
-
-        load_game_screen.draw()
+            return None
+        if result == "Exit":
+            return "Exit"
+        if isinstance(result, dict) and "Level-Selected" in result:
+            return result["Level-Selected"]  # Actual level number
+        level_screen.draw()
         clock.tick(60)
-
-    return result
 
 
 def run_settings_menu(screen, clock):
-    """
-    Runs the settings menu until the user exits (via escape or window close).
-    """
-    settings_menu = SettingsMenu(screen)
-    running_settings = True
-    result = None
-
-    while running_settings:
-        events = pygame.event.get()
-        for event in events:
-            if event.type == pygame.QUIT:
-                running_settings = False
-                result = "Exit"
-            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
-                running_settings = False
-                result = "Escape"
-        result = settings_menu.handle_events(events)
-
-        if result == "Escape":
-            running_settings = False
-
-        settings_menu.draw()
-        clock.tick(60)
-
-    return result
+    """ Runs the Layout/Settings placeholder screen. """
+    settings_menu = LayoutMenuScreen(screen)
+    return settings_menu.run()  # Returns "Escape" or "Exit"
 
 
-def run_layout_menu(screen, clock):
-    """
-    Runs the layout (About) menu until the user exits.
-    """
-    layout_menu = LayoutMenu(screen)
-    running_layout = True
-    result = None
+def run_about_menu(screen, clock):
+    """ Runs the About screen. """
+    about_menu = AboutMenuScreen(screen)
+    return about_menu.run()  # Returns "Escape" or "Exit"
 
-    while running_layout:
-        events = pygame.event.get()
-        for event in events:
-            if event.type == pygame.QUIT:
-                running_layout = False
-                result = "Exit"
-            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
-                running_layout = False
-                result = "Escape"
-        result = layout_menu.handle_events(events)
-
-        if result == "Escape":
-            running_layout = False
-
-        layout_menu.draw()
-        clock.tick(60)
-
-    return result
-
-
+# VERSION Details on "constants.py"
 def main():
     pygame.init()
 
-    # Calculate dimensions only once and create the display window.
+    # Set window size
     constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT = get_monitor_height_width()
     screen = pygame.display.set_mode((constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT))
+
+    # === CUSTOM WINDOW TITLE & ICON ===
+    pygame.display.set_caption("Typing Shooter")  # Change to your game name!
+
+    # Load and set custom icon (size: 32x32 or 64x64 PNG)
+    try:
+        icon = Loader.load_image("assets/images/icon/game_icon.png")
+        pygame.display.set_icon(icon)
+    except Exception as e:
+        print("Could not load game icon:", e)
+        # Falls back to default Pygame icon if file missing
+
+    # ===================================
+
     star_background = StarBackground()
     clock = pygame.time.Clock()
 
-    running = True
+    while True:
+        # Main menu
+        choice = run_start_screen(screen, star_background, clock)
 
-    while running:
-        # Run the start screen and retrieve the chosen option.
-        chosen_option = run_start_screen(screen, star_background, clock)
+        if choice == "Exit":
+            break
 
-        if chosen_option == "Exit":
-            running = False
-
-        elif chosen_option == "Start Game":
-            result = run_level_loading_screen(screen, star_background, clock)
-
-            if result == "Exit":
-                running = False
-            elif result and result != "Escape":  # result is assumed to be the selected level.
-                game = Game(checkpoint_selected=result, star_background=star_background)
+        elif choice == "Start Game":
+            level = run_level_loading_screen(screen, star_background, clock)
+            if level == "Exit":
+                break
+            if level is not None:  # Valid level selected
+                game = Game(checkpoint_selected=level, star_background=star_background)
                 game_result = game.run()
-                if game_result == "main_menu":
-                    continue  # Return to the start screen.
+                if game_result == "Exit":
+                    break
+                # If "main_menu", just loop back
 
-        elif chosen_option == "Layout":
+        elif choice == "Layout":  # Settings / Layout placeholder
             result = run_settings_menu(screen, clock)
             if result == "Exit":
-                running = False
+                break
 
-        elif chosen_option == "About":
-            result = run_layout_menu(screen, clock)
+        elif choice == "About":
+            result = run_about_menu(screen, clock)
             if result == "Exit":
-                running = False
+                break
 
     pygame.quit()
 

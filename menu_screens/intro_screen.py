@@ -1,5 +1,6 @@
 import pygame
 
+# Removed to make the game play quicker, will make it better and add it later
 class GameIntro:
     def __init__(self, screen, width=1020, height=800):
         self.screen = screen

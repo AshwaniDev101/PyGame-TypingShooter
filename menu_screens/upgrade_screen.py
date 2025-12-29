@@ -6,7 +6,7 @@ import pygame
 
 from config.loader import Loader
 
-
+# Update screen for checking upgrade isn't added at least till the version v1.2.1
 class UpgradeButton:
     def __init__(self,screen, x, y, image_path):
 
