@@ -266,7 +266,7 @@ class Game:
 
         elif event.key == pygame.K_TAB:
             if self.selected_enemy:
-                self.selected_enemy.selected = False
+                self.selected_enemy.selected = False # Selection Mode can be turned ON or OFF using Boolean Toggle
             self.selected_enemy = None
         elif event.key == pygame.K_HOME:
             self.stars.set_top_speed(1)
@@ -288,91 +288,109 @@ class Game:
 
 
     def shooting_on_keypress_selection_mode(self, event):
+        """Selection mode: Type a letter to select the CLOSEST matching enemy (highlight it)
+        + shoot bullets at ALL matching enemies.
+        - Visual selection on closest for focus
+        """
         letter_typed = event.unicode.lower()
-        if self.player.health > 0:
-            if self.selected_enemy is None or self.selected_enemy.is_defeated():
-                if self.selected_enemy:
-                    self.selected_enemy.selected = False
-                self.selected_enemy = None
-
-                # Select the closed enemy to the player
-                closest_enemy = None
-                min_distance = float('inf')
-                for enemy in self.enemy_list:
-                    if enemy.word and enemy.word[0].lower() == letter_typed:
-                        # Calculate the Euclidean distance between the enemy and the player.
-                        dx = enemy.rect.centerx - self.player.rect.centerx
-                        dy = enemy.rect.centery - self.player.rect.centery
-                        distance = (dx ** 2 + dy ** 2) ** 0.5
-                        if distance < min_distance:
-                            min_distance = distance
-                            closest_enemy = enemy
-
-                if closest_enemy:
-                    self.selected_enemy = closest_enemy
-                    self.selected_enemy.selected = True
-
-            if self.selected_enemy:
-                if self.selected_enemy.word and self.selected_enemy.word[0].lower() == letter_typed:
-                    if self.player.ammo > 0:
-                        self.player.gun_rotate_toward(self.selected_enemy)  # this point the gun toward the enemy
-                        self.selected_enemy.remove_letter()
-
-                        self.bullets_manager.shoot(
-                            self.player.get_gun_end_firing_point(),
-                            self.selected_enemy,
-                            letter_typed,
-                        )
-                        self.player.loss_ammo()
-
-                else:
-                    # pygame.mixer.Sound("assets/sounds/spring.wav").play()
-                    Loader.load_sound("assets/sounds/spring.wav").play()
-
-    def shooting_on_keypress(self, event):
-        # Handle letter input for shooting enemies directly without selection.
-        letter_typed = event.unicode.lower()
-
-        # Only process letters between a and z.
         if not letter_typed.isalpha():
             return
 
-        if self.player.health > 0:
-            # Iterate over enemies and shoot the first enemy whose word starts with the typed letter.
-            for enemy in self.enemy_list:
+        if self.player.health <= 0:
+            return
 
-                # it's not working because I'm check is enemy defeated only when im typing which won't always work
-                # This way of enemy death detection does not work
-                # This is a temp way to handle boss fight it help with pausing the campaign_manager events until boss defeated
-                # if isinstance(enemy, (EnemyGunship, EnemyBattleship)) :
-                #
-                #     if enemy.is_defeated():
-                #         print("Boss dead")
+        matching_enemies = [
+            enemy for enemy in self.enemy_list
+            if enemy.word and enemy.word[0].lower() == letter_typed
+        ]
+
+        if not matching_enemies:
+            Loader.load_sound("assets/sounds/spring.wav").play()
+            return
+
+        # Sort closest first
+        player_center = self.player.rect.center
+
+        def distance_sq(enemy):
+            dx = enemy.rect.centerx - player_center[0]
+            dy = enemy.rect.centery - player_center[1]
+            return dx * dx + dy * dy
+
+        matching_enemies.sort(key=distance_sq)
+
+        if self.player.ammo <= 0:
+            Loader.load_sound("assets/sounds/no_ammo.mp3").play()
+            return
+
+        # Deselect old, select closest new one
+        if self.selected_enemy:
+            self.selected_enemy.selected = False
+        self.selected_enemy = matching_enemies[0]
+        self.selected_enemy.selected = True
+
+        # Multi-shot
+        for enemy in matching_enemies:
+            enemy.remove_letter()
+            self.player.gun_rotate_toward(enemy)
+            shoot_pos = self.player.get_gun_end_firing_point()
+            self.bullets_manager.shoot(shoot_pos, enemy, letter_typed)
+
+        self.player.loss_ammo()  # 1 ammo total
+        # No success sound
 
 
 
-                if enemy.word and enemy.word[0].lower() == letter_typed:
-                    if self.player.ammo > 0:
-                        # Rotate the player's gun toward this enemy.
-                        self.player.gun_rotate_toward(enemy)
-                        # Remove the letter from the enemy.
-                        enemy.remove_letter()
-                        # Shoot a bullet at the enemy.
-                        self.bullets_manager.shoot(
-                            self.player.get_gun_end_firing_point(),
-                            enemy,
-                            letter_typed,
-                        )
-                        self.player.loss_ammo()
-                    else:
-                        # Play a sound if there’s no ammo.
-                        Loader.load_sound("assets/sounds/no_ammo.mp3").play()
-                    # Stop after handling the first matching enemy.
-                    break
-                else:
-                    pass
-                    # If no enemy starts with the letter, you can play an error sound.
-                    # Loader.load_sound("assets/sounds/spring.wav").play()
+    def shooting_on_keypress(self, event):
+        """Direct mode: Type a letter to shoot bullets at ALL enemies whose word starts with that letter.
+        - 1 ammo per keypress (Option A)
+        - Sort closest to farthest
+        - Rotate gun toward each (rapid flick effect via sequential rotates)
+        """
+
+        letter_typed = event.unicode.lower()
+        if not letter_typed.isalpha():
+            return
+
+        if self.player.health <= 0:
+            return
+
+        # Find all enemies whose word starts with the typed letter
+        matching_enemies = [
+            enemy for enemy in self.enemy_list
+            if enemy.word and enemy.word[0].lower() == letter_typed
+        ]
+
+        if not matching_enemies:
+            # Optional: keep silent (like original), or uncomment below for miss feedback
+            # Loader.load_sound("assets/sounds/spring.wav").play()
+            return
+
+        # Sort by distance: closest first
+        player_center = self.player.rect.center
+
+        def distance_sq(enemy):
+            dx = enemy.rect.centerx - player_center[0]
+            dy = enemy.rect.centery - player_center[1]
+            return dx * dx + dy * dy
+
+        matching_enemies.sort(key=distance_sq)
+
+        # Check ammo once
+        if self.player.ammo <= 0:
+            Loader.load_sound("assets/sounds/no_ammo.mp3").play()
+            return
+
+        # Shoot ALL matching enemies
+        for enemy in matching_enemies:
+            enemy.remove_letter()  # Remove letter from this enemy
+            self.player.gun_rotate_toward(enemy)  # Flick gun toward it
+            shoot_pos = self.player.get_gun_end_firing_point()
+            self.bullets_manager.shoot(shoot_pos, enemy, letter_typed)
+
+        # Only 1 ammo used, no matter how many hits
+        self.player.loss_ammo()
+        # No success sound — silent, just like you want
+
 
     def process_events(self):
         # Process all game events (keyboard, mouse, etc.)
