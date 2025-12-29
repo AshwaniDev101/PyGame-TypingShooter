@@ -52,14 +52,15 @@ Defend your spaceship against relentless meteors, kamikaze drones, proximity min
 ## 👾 Enemy Types
 
 ### ☄️ Meteors
-<img src="assets/images/meteors/meteor_1.png" width="10%" alt="Meteor">
 
 Brainless chunks of floating rock - about the size of a city bus - hurtling through space.  
 I swear I didn’t program them to chase you... but they *always* drift straight toward your ship.
 
 <div align="center">
-  <video src="assets/videos/game_preview/dodge.mp4" autoplay loop muted playsinline width="45%"></video>
-  <video src="assets/videos/game_preview/shoot.mp4" autoplay loop muted playsinline width="45%"></video>
+
+<img src="assets/videos/game_preview/dodge.gif" width="40%" alt="dodge.gif">
+<img src="assets/videos/game_preview/shoot.gif" width="40%" alt="shoot.gif">
+
 </div>
 
 ---
@@ -70,7 +71,7 @@ They exist for one purpose: **ramming into you at full speed**.
 Keep typing - hesitation means death.
 
 <div align="center">
-  <video src="assets/videos/game_preview/drone.mp4" autoplay loop muted playsinline width="45%"></video>
+<img src="assets/videos/game_preview/drone.gif" width="40%" alt="drone.gif">
 </div>
 
 ---
@@ -81,7 +82,7 @@ They lock on, rush toward you, and explode on contact -
 like that suspicious ex who gets clingy the moment you pull away.
 
 <div align="center">
-  <video src="assets/videos/game_preview/proximity_mine.mp4" autoplay loop muted playsinline width="45%"></video>
+<img src="assets/videos/game_preview/proximity_mine.gif" width="40%" alt="proximity_mine.gif">
 </div>
 
 ---
@@ -91,7 +92,7 @@ Persistent fighters with near-infinite ammo.
 They’ll harass you nonstop - take them down fast or get worn down.
 
 <div align="center">
-  <video src="assets/videos/game_preview/gunship.mp4" autoplay loop muted playsinline width="45%"></video>
+<img src="assets/videos/game_preview/gunship.gif" width="40%" alt="gunship.gif">
 </div>
 
 ---
@@ -101,9 +102,12 @@ Massive capital ships that demand **perfect typing** to destroy.
 They spawn drones, fire relentlessly, and soak up damage.  
 Bring your A-game.
 
+
 <div align="center">
-  <video src="assets/videos/game_preview/battleship.mp4" autoplay loop muted playsinline width="45%"></video>
+<img src="assets/videos/game_preview/battleship.gif" width="40%" alt="battleship.gif">
 </div>
+
+
 
 ## 📥 Download & Install
 
@@ -112,8 +116,6 @@ Download the latest build from **GitHub Releases**:
 👉 **https://github.com/AshwaniDev101/PyGame-TypingShooter/releases/latest**
 
 Available for **Windows** only.
-
-
 
 ### 🔹 Install
 1. Download the ZIP from the latest release  
@@ -124,16 +126,7 @@ Available for **Windows** only.
 ---
 
 
-## 🛠️ Run From Source (Developers)
 
-### Requirements
-- Python 3.x  
-- Pygame  
-
-Install dependencies:
-```bash
-pip install pygame
-```
 ## 📜 License & Usage
 
 Feel free to **download, play, and modify** this game for your own personal use or learning — go wild, tweak it, break it, make it better!
