@@ -37,7 +37,8 @@ class Player:
         self.FLASH_DURATION = 300
 
         # Engine sound setup
-        self.engine_sound = Loader.load_sound("assets/sounds/jet_engine.ogg")
+        # self.engine_sound = Loader.load_sound("assets/sounds/jet_engine.ogg")
+        self.engine_sound = Loader.load_sound("assets/sounds/music/abandoned_space_station_background_music.mp3")
         self.engine_sound.set_volume(0.2)
         self.engine_channel = pygame.mixer.Channel(1)
         if not self.engine_channel.get_busy():
