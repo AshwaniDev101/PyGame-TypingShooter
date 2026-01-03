@@ -27,7 +27,9 @@ class EnemyProximityMines(Enemy):
         self.angle = 0
         self.speed = 2
         self.entry_done = True  # Starts moving immediately
-        self.bomb_activation_distance = 300  # Distance threshold to start homing toward the player
+        self.bomb_activation_distance = 200  # Distance threshold to start homing toward the player
+
+        self.word = utils.generate_random_word(3, 6)
 
         # Glowing (pulsating) effect variables
         self.pulse = 0           # Controls the pulsating effect magnitude

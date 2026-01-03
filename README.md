@@ -35,6 +35,15 @@ Thanks again - you're awesome.
 ![Pygame](https://img.shields.io/badge/Pygame-2.6.1-yellow) 
 ![License](https://img.shields.io/badge/License-MIT-green) 
 
+## ▶️ Gameplay Video
+
+Watch a short gameplay preview recorded from the current build:
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=fvnl_RSsRSY">
+    <img src="https://img.youtube.com/vi/fvnl_RSsRSY/hqdefault.jpg" alt="Typing Shooter Gameplay | Python &amp; Pygame" width="800"/>
+  </a>
+</p>
+
 **A fast-paced typing shooter built with Pygame.**  
 Type words to fire bullets, destroy incoming enemies, and survive endless waves in deep space.  
 Perfect for improving your **typing speed, accuracy, and reflexes** - or just blowing things up.

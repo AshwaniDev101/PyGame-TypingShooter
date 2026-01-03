@@ -76,37 +76,63 @@
     {"delay": 3000, "action": {"checkpoint": {"id": "6"}}},
 
 
+    {"delay": 3000, "action": {"trigger": {"meteor_shower": true}}},
+
+    {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_meteor"}}},
+    {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_meteor"}}},
+    {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_meteor"}}},
+    {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_meteor"}}},
+
     {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_meteor"}}},
     {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_meteor"}}},
     {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_proximity_mine"}}},
     {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_proximity_mine"}}},
+    {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_meteor"}}},
+    {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_meteor"}}},
+    {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_meteor"}}},
+    {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_meteor"}}},
     {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_suicide_drone"}}},
     {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_suicide_drone"}}},
+
+    {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_meteor"}}},
+    {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_meteor"}}},
     {"delay": 2000, "action": {"spawn": {"enemy_type": "enemy_gunship"}}},
+    {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_meteor"}}},
+    {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_meteor"}}},
 
 
 
     {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_meteor"}}},
     {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_meteor"}}},
+
     {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_proximity_mine"}}},
     {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_proximity_mine"}}},
+
+    {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_meteor"}}},
+    {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_meteor"}}},
     {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_suicide_drone"}}},
     {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_suicide_drone"}}},
+    {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_meteor"}}},
+    {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_meteor"}}},
     {"delay": 2000, "action": {"spawn": {"enemy_type": "enemy_gunship"}}},
 
     {"delay": 3000, "action": {"checkpoint": {"id": "7"}}},
 
 
 
+    {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_meteor"}}},
+    {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_meteor"}}},
+    {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_suicide_drone"}}},
+    {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_suicide_drone"}}},
+    {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_proximity_mine"}}},
+    {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_proximity_mine"}}},
+    {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_meteor"}}},
+    {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_meteor"}}},
+    {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_proximity_mine"}}},
+    {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_proximity_mine"}}},
 
     {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_meteor"}}},
     {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_meteor"}}},
-    {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_suicide_drone"}}},
-    {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_suicide_drone"}}},
-    {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_proximity_mine"}}},
-    {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_proximity_mine"}}},
-    {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_proximity_mine"}}},
-    {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_proximity_mine"}}},
     {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_suicide_drone"}}},
     {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_suicide_drone"}}},
     {"delay": 2000, "action": {"spawn": {"enemy_type": "enemy_gunship"}}},
@@ -123,6 +149,8 @@
     {"delay": 2000, "action": {"spawn": {"enemy_type": "enemy_gunship"}}},
     {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_proximity_mine"}}},
     {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_proximity_mine"}}},
+    {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_meteor"}}},
+    {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_meteor"}}},
     {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_proximity_mine"}}},
     {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_proximity_mine"}}},
     {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_meteor"}}},
@@ -133,6 +161,8 @@
     {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_meteor"}}},
     {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_proximity_mine"}}},
     {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_proximity_mine"}}},
+        {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_meteor"}}},
+    {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_meteor"}}},
     {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_suicide_drone"}}},
     {"delay": 1500, "action": {"spawn": {"enemy_type": "enemy_suicide_drone"}}},
     {"delay": 2000, "action": {"spawn": {"enemy_type": "enemy_gunship"}}},

@@ -4,18 +4,18 @@
         "states": {
             "player_x": 551,
             "player_health": 3,
-            "player_ammo": 102
+            "player_ammo": 109
         },
-        "timestamp": "2026-01-03T22:28:54.894836"
+        "timestamp": "2026-01-03T23:23:34.060513"
     },
     {
         "id": 2,
         "states": {
             "player_x": 551,
             "player_health": 3,
-            "player_ammo": 157
+            "player_ammo": 184
         },
-        "timestamp": "2026-01-03T22:29:17.949471"
+        "timestamp": "2026-01-03T23:22:46.043733"
     },
     {
         "id": 3,
@@ -49,35 +49,44 @@
         "states": {
             "player_x": 551,
             "player_health": 3,
-            "player_ammo": 355
+            "player_ammo": 113
         },
-        "timestamp": "2026-01-03T22:30:22.945579"
+        "timestamp": "2026-01-03T23:23:48.272315"
     },
     {
         "id": 7,
         "states": {
             "player_x": 551,
-            "player_health": 2,
-            "player_ammo": 412
+            "player_health": 3,
+            "player_ammo": 303
         },
-        "timestamp": "2026-01-03T22:30:51.610110"
+        "timestamp": "2026-01-03T23:24:44.209002"
     },
     {
         "id": 8,
         "states": {
             "player_x": 551,
-            "player_health": 1,
-            "player_ammo": 359
+            "player_health": 3,
+            "player_ammo": 395
         },
-        "timestamp": "2026-01-03T21:42:38.356152"
+        "timestamp": "2026-01-03T23:25:27.705854"
     },
     {
         "id": 9,
         "states": {
             "player_x": 551,
-            "player_health": 1,
-            "player_ammo": 451
+            "player_health": 2,
+            "player_ammo": 477
         },
-        "timestamp": "2026-01-03T21:43:26.188105"
+        "timestamp": "2026-01-03T23:26:10.161204"
+    },
+    {
+        "id": 10,
+        "states": {
+            "player_x": 551,
+            "player_health": 2,
+            "player_ammo": 511
+        },
+        "timestamp": "2026-01-03T23:26:38.893907"
     }
 ]
