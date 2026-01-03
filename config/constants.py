@@ -1,6 +1,6 @@
 import pygame
 
-VERSION = "1.2.1"
+VERSION = "1.2.2"
 
 # Screen settings (852x480)
 SCREEN_WIDTH = 852 #800

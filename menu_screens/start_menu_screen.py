@@ -119,7 +119,7 @@ class StartScreen:
 
         # Load meteor images
         self.meteor_images = [
-            Loader.load_image(f"assets/images/meteors/meteor_{i}.png") for i in range(1, 20)
+            Loader.load_image(f"assets/images/meteors/meteor_{random.randint(0, 1)}_{i}.png") for i in range(0, 10)
         ]
         self.meteors = []
 

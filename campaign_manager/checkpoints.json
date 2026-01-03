@@ -4,8 +4,71 @@
         "states": {
             "player_x": 551,
             "player_health": 3,
-            "player_ammo": 100
+            "player_ammo": 116
         },
-        "timestamp": "2025-12-29T09:07:45.889935"
+        "timestamp": "2026-01-03T21:30:43.629743"
+    },
+    {
+        "id": 2,
+        "states": {
+            "player_x": 551,
+            "player_health": 3,
+            "player_ammo": 155
+        },
+        "timestamp": "2026-01-03T21:31:06.160094"
+    },
+    {
+        "id": 3,
+        "states": {
+            "player_x": 551,
+            "player_health": 3,
+            "player_ammo": 181
+        },
+        "timestamp": "2026-01-03T21:31:14.397869"
+    },
+    {
+        "id": 4,
+        "states": {
+            "player_x": 551,
+            "player_health": 3,
+            "player_ammo": 244
+        },
+        "timestamp": "2026-01-03T21:31:31.091910"
+    },
+    {
+        "id": 5,
+        "states": {
+            "player_x": 551,
+            "player_health": 3,
+            "player_ammo": 256
+        },
+        "timestamp": "2026-01-03T21:31:40.143271"
+    },
+    {
+        "id": 6,
+        "states": {
+            "player_x": 551,
+            "player_health": 0,
+            "player_ammo": 273
+        },
+        "timestamp": "2026-01-03T21:32:15.623574"
+    },
+    {
+        "id": 7,
+        "states": {
+            "player_x": 551,
+            "player_health": 2,
+            "player_ammo": 534
+        },
+        "timestamp": "2025-12-30T12:22:26.275058"
+    },
+    {
+        "id": 8,
+        "states": {
+            "player_x": 603,
+            "player_health": 3,
+            "player_ammo": 48
+        },
+        "timestamp": "2025-12-30T00:59:50.610137"
     }
 ]
