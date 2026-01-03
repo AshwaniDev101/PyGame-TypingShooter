@@ -4,71 +4,80 @@
         "states": {
             "player_x": 551,
             "player_health": 3,
-            "player_ammo": 116
+            "player_ammo": 107
         },
-        "timestamp": "2026-01-03T21:30:43.629743"
+        "timestamp": "2026-01-03T21:55:02.240444"
     },
     {
         "id": 2,
         "states": {
             "player_x": 551,
             "player_health": 3,
-            "player_ammo": 155
+            "player_ammo": 188
         },
-        "timestamp": "2026-01-03T21:31:06.160094"
+        "timestamp": "2026-01-03T21:55:24.941960"
     },
     {
         "id": 3,
         "states": {
             "player_x": 551,
             "player_health": 3,
-            "player_ammo": 181
+            "player_ammo": 220
         },
-        "timestamp": "2026-01-03T21:31:14.397869"
+        "timestamp": "2026-01-03T21:55:32.920597"
     },
     {
         "id": 4,
         "states": {
             "player_x": 551,
             "player_health": 3,
-            "player_ammo": 244
+            "player_ammo": 284
         },
-        "timestamp": "2026-01-03T21:31:31.091910"
+        "timestamp": "2026-01-03T21:38:32.879882"
     },
     {
         "id": 5,
         "states": {
             "player_x": 551,
             "player_health": 3,
-            "player_ammo": 256
+            "player_ammo": 287
         },
-        "timestamp": "2026-01-03T21:31:40.143271"
+        "timestamp": "2026-01-03T21:40:42.730225"
     },
     {
         "id": 6,
         "states": {
             "player_x": 551,
-            "player_health": 0,
-            "player_ammo": 273
+            "player_health": 2,
+            "player_ammo": 344
         },
-        "timestamp": "2026-01-03T21:32:15.623574"
+        "timestamp": "2026-01-03T21:41:12.183711"
     },
     {
         "id": 7,
         "states": {
             "player_x": 551,
-            "player_health": 2,
-            "player_ammo": 534
+            "player_health": 1,
+            "player_ammo": 380
         },
-        "timestamp": "2025-12-30T12:22:26.275058"
+        "timestamp": "2026-01-03T21:41:52.590492"
     },
     {
         "id": 8,
         "states": {
-            "player_x": 603,
-            "player_health": 3,
-            "player_ammo": 48
+            "player_x": 551,
+            "player_health": 1,
+            "player_ammo": 359
         },
-        "timestamp": "2025-12-30T00:59:50.610137"
+        "timestamp": "2026-01-03T21:42:38.356152"
+    },
+    {
+        "id": 9,
+        "states": {
+            "player_x": 551,
+            "player_health": 1,
+            "player_ammo": 451
+        },
+        "timestamp": "2026-01-03T21:43:26.188105"
     }
 ]
