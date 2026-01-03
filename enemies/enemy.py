@@ -27,7 +27,7 @@ class Enemy:
         self.image = Loader.load_image("assets/images/enemy_ships/enemyRed1.png")
         self.rect = self.image.get_rect(center=(200, 200))
         # self.font = pygame.font.Font("assets/fonts/Righteous-Regular.ttf", 21)
-        self.font = Loader.load_font("assets/fonts/Righteous-Regular.ttf", 21)
+        self.font = Loader.load_font("assets/fonts/Roboto-Regular.ttf", 24)
         self.word = utils.generate_random_word(4,8)  # Default word if not provided
         self.hit_count = max(len(self.word), 1)  # Hit count based on word length
         self.set_position(height=50)  # Set the initial position on the screen

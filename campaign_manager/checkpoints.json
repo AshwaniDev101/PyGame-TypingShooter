@@ -4,63 +4,63 @@
         "states": {
             "player_x": 551,
             "player_health": 3,
-            "player_ammo": 107
+            "player_ammo": 102
         },
-        "timestamp": "2026-01-03T21:55:02.240444"
+        "timestamp": "2026-01-03T22:28:54.894836"
     },
     {
         "id": 2,
         "states": {
             "player_x": 551,
             "player_health": 3,
-            "player_ammo": 188
+            "player_ammo": 157
         },
-        "timestamp": "2026-01-03T21:55:24.941960"
+        "timestamp": "2026-01-03T22:29:17.949471"
     },
     {
         "id": 3,
         "states": {
             "player_x": 551,
             "player_health": 3,
-            "player_ammo": 220
+            "player_ammo": 204
         },
-        "timestamp": "2026-01-03T21:55:32.920597"
+        "timestamp": "2026-01-03T22:29:26.297036"
     },
     {
         "id": 4,
         "states": {
             "player_x": 551,
             "player_health": 3,
-            "player_ammo": 284
+            "player_ammo": 262
         },
-        "timestamp": "2026-01-03T21:38:32.879882"
+        "timestamp": "2026-01-03T22:29:43.569182"
     },
     {
         "id": 5,
         "states": {
             "player_x": 551,
             "player_health": 3,
-            "player_ammo": 287
+            "player_ammo": 306
         },
-        "timestamp": "2026-01-03T21:40:42.730225"
+        "timestamp": "2026-01-03T22:29:53.761666"
     },
     {
         "id": 6,
         "states": {
             "player_x": 551,
-            "player_health": 2,
-            "player_ammo": 344
+            "player_health": 3,
+            "player_ammo": 355
         },
-        "timestamp": "2026-01-03T21:41:12.183711"
+        "timestamp": "2026-01-03T22:30:22.945579"
     },
     {
         "id": 7,
         "states": {
             "player_x": 551,
-            "player_health": 1,
-            "player_ammo": 380
+            "player_health": 2,
+            "player_ammo": 412
         },
-        "timestamp": "2026-01-03T21:41:52.590492"
+        "timestamp": "2026-01-03T22:30:51.610110"
     },
     {
         "id": 8,
